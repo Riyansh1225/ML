@@ -133,15 +133,15 @@ OutPut ::
 
 ## Size , Itemsize and nbytes  Definations 
 
-# Size :: This will display the number of elements in an array.
-# itemsize :: This will display memory used by each array element in an array.
-# nbytes :: The total number of bytes required to store array data ( size * item size )
-  
+# Size :: This will display the number of elements in an array
+
 import numpy as np
 a=np.array([1,2,3,4,4,55,5,5,5,5])
 print (a.size)
 
 Output :: 10
+
+# itemsize :: This will display memory used by each array element in an array
 
 import numpy as np
 a=np.array([1,2,3,4,4,55,5,5,5,5])
@@ -149,11 +149,109 @@ print (a.itemsize)
 
 Output :: 4 
 
+# nbytes :: The total number of bytes required to store array data ( size * item size )
 
 import numpy as np
 a=np.array([1,2,3,4,4,55,5,5,5,5])
 print (a.nbytes)
 
 Output :: 40 
+
+# Flags in Numpy Library
+
+import numpy as np
+x = np.array([1,2,3,4,5])
+print x.flags
+
+Output ::
+
+C_CONTIGUOUS : True
+F_CONTIGUOUS : True
+OWNDATA : True
+WRITEABLE : True
+ALIGNED : True
+UPDATEIFCOPY : False
+
+# Numpy ---> ARRAY CREATION ROUTINES
+
+# numpy.empty --> It creates an uninitialized array of specified shape and dtype. It uses the following constructor.
+
+Syntax :: numpy.empty(shape, dtype=float, order='C')
+
+Note :: The elements in an array show random values as they are not initialized.
+
+import numpy as np
+a=np.empty((3,2),dtype=int)
+print (a)
+
+Output :: 
+
+[[         0 1074266112]
+ [         0 1073741824]
+ [         0 1074266112]]
+ 
+ #numpy.zeros --> Returns a new array of specified size, filled with zeros.
+ 
+ synatx --> numpy.zeros(shape, dtype=float, order='C')
+ 
+ import numpy as np
+ a=np.zeros([2,3,4], dtype = float)
+ print (a) 
+ 
+ Output ::
+ 
+ [[[0. 0. 0. 0.]
+  [0. 0. 0. 0.]
+  [0. 0. 0. 0.]]
+
+ [[0. 0. 0. 0.]
+  [0. 0. 0. 0.]
+  [0. 0. 0. 0.]]]
+  
+  #numpy.ones --> Returns a new array of specified size and type, filled with ones
+  
+  Syntax : numpy.ones(shape, dtype=None, order='C')
+  
+ import numpy as np
+ a=np.ones([2,3,4], dtype = float)
+ print (a) 
+ 
+  Output ::
+  
+  [[[1. 1. 1. 1.]
+  [1. 1. 1. 1.]
+  [1. 1. 1. 1.]]
+
+ [[1. 1. 1. 1.]
+  [1. 1. 1. 1.]
+  [1. 1. 1. 1.]]]
+  
+# NUMPY − ARRAY FROM EXISTING DATA ::
+
+#numpy.asarray --> This function is similar to numpy.array except for the fact that it has fewer parameters. 
+#This routine is useful for converting Python sequence into ndarray.
+
+#Synatax --> numpy.asarray(a, dtype=None, order=None)
+
+import numpy as np
+a=np.asarray([1,2,3,4,5,6,7] , dtype = complex )
+print (a)
+
+Output :: [1.+0.j 2.+0.j 3.+0.j 4.+0.j 5.+0.j 6.+0.j 7.+0.j]
+
+# numpy.frombuffer --> This function interprets a buffer as one-dimensional array.
+# Any object that exposes the buffer interface is used as parameter to return an ndarray.
+
+Syntax --> numpy.frombuffer(buffer, dtype=float, count=-1, offset=0)
+
+import numpy as np
+b="My first Python Program"
+a=np.frombuffer(b,dtype=S1)
+print (a)
+
+
+
+
+
 
 
