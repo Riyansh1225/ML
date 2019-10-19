@@ -9,11 +9,21 @@ import numpy as np
 a=np.array([1,2,3,4,5,6], dtype = int )
 print(a)
 
+Output ::
+
+[1 2 3 4 5 6]
+
 # Run the same program in 2 dimensions array 
 
 import numpy as np
 a=np.array([[1,2,3,4],[5,6,7,8]] , dtype = float )
 print (a)
+
+Output :: 
+
+[[1. 2. 3. 4.]
+ [5. 6. 7. 8.]]
+
 
 # Examples for Data type in NumPy  :: 
 
@@ -22,12 +32,128 @@ print (a)
 # This is basic example of the Numpy array
 
 import numpy as np
-a=np.dtype(int8)
+a=np.dtype(int)
 print (a)
+
+Output :: 
+int32
 
 #int8, int16, int32, int64 can be replaced by equivalent string 'i1', 'i2','i4', etc.
 
 import nupy as np
 a=np.dtype('i4')
 print (a)
+
+OutPut :: 
+int32
+
+# Create structured data type and used to display the contenent on the array 
+
+import numpy as np
+a=np.dtype([('Name','S20'),('Marks','i4'),('Ranks','i4')])
+b=np.array([('Phani',70,4),('Ram',60,5),('Sai',59,6)] , dtype=a)
+print (b['Marks'])
+
+OutPut :: [70 60 59]
+
+#Examples for Array Attributes in Numpy 
+
+# Display shape of the array ( Matrix formte : Rows * Columns )
+
+import numpy as np
+a=np.array([(1,2,3,4,5,6,7),(3,4,5,6,7,8,9)], dtype=int)
+print (a.shape)
+
+OutPut :: (2, 7)
+
+# We can reshape the matrix 
+
+import numpy as np
+a=np.array([(1,2,3),(4,5,6)], dtype=float)
+print (a.shape)
+b = a.reshape(3,2)
+print(b)
+
+OutPut ::
+
+(2, 3)
+
+[[1. 2.]
+ [3. 4.]
+ [5. 6.]]
+
+# We can resize the matrix
+
+import numpy as np
+a=np.array([(1,2,3),(4,5,6)], dtype=float)
+print (a.shape)
+a.shape=(3,2)
+print(a)
+
+OutPut ::
+(2, 3)
+
+[[1. 2.]
+ [3. 4.]
+ [5. 6.]]
+
+
+# An array of evenly spaced numbers
+
+import numpy as np
+a=np.arange(15)
+print (a)
+
+Output :: [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14]
+
+# Display the list of numbers in a range. Here End number won't be considered.
+
+import numpy as np
+a=np.arange(16).reshape(4,2,2)
+print (a)
+a.ndim
+
+OutPut ::
+
+[[[ 0  1]
+  [ 2  3]]
+
+ [[ 4  5]
+  [ 6  7]]
+
+ [[ 8  9]
+  [10 11]]
+
+ [[12 13]
+  [14 15]]]
+  
+  a.ndim
+  
+  3
+
+## Size , Itemsize and nbytes  Definations 
+
+# Size :: This will display the number of elements in an array.
+# itemsize :: This will display memory used by each array element in an array.
+# nbytes :: The total number of bytes required to store array data ( size * item size )
+  
+import numpy as np
+a=np.array([1,2,3,4,4,55,5,5,5,5])
+print (a.size)
+
+Output :: 10
+
+import numpy as np
+a=np.array([1,2,3,4,4,55,5,5,5,5])
+print (a.itemsize)
+
+Output :: 4 
+
+
+import numpy as np
+a=np.array([1,2,3,4,4,55,5,5,5,5])
+print (a.nbytes)
+
+Output :: 40 
+
 
