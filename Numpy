@@ -1,3 +1,7 @@
+# Examples for ndarray Concept :: 
+
+# numpy.array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0) --> This is syntax of the array object in 
+
 # In this example depending on dtype output values will be changed. 
 # Means we can convert the elements in an array by defining the data type.
 
@@ -5,4 +9,25 @@ import numpy as np
 a=np.array([1,2,3,4,5,6], dtype = int )
 print(a)
 
-#
+# Run the same program in 2 dimensions array 
+
+import numpy as np
+a=np.array([[1,2,3,4],[5,6,7,8]] , dtype = float )
+print (a)
+
+# Examples for Data type in NumPy  :: 
+
+#  numpy.dtype(object, align, copy)  --> This is syntax of dtype in Numpy.
+
+# This is basic example of the Numpy array
+
+import numpy as np
+a=np.dtype(int8)
+print (a)
+
+#int8, int16, int32, int64 can be replaced by equivalent string 'i1', 'i2','i4', etc.
+
+import nupy as np
+a=np.dtype('i4')
+print (a)
+
