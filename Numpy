@@ -608,12 +608,73 @@ Output ::
 
 [2.0+6.j  3.5+5.j] 
 
+*************** Numpy - Broadcasting ***************************************************
+
+# The Broadcasting refers to ability of Numpy to treat arrays of different shapes during arithmetic operations. 
+# The arithmetic operations on two arrays normally done on array elements.
+# if the arrays of same size we don't have any Issues.The arithmatic operations on different sizes will make some difficult.
+
+# This is simple example of multiplication of two arrays of same size 
+
+import numpy as np
+a=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print (a)
+b=np.array([[1,2,3],[4,5,6],[7,8,9]])
+print (b)
+c= a*b
+print (c)
+
+Output ::
+
+print (a) ::
+
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+ 
+ print (b) ::
+ 
+ [[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+ 
+ print (c) ::
+ 
+ [[ 1  4  9]
+ [16 25 36]
+ [49 64 81]]
  
  
+# Multiplication of two matrix. Below is thumb rule for the same.
+# The number of columns in first matrix is equal to number of rows in secons matrix.
+# Below is some example for the same.
+# We don't have separate functions in Numpy to support this functionality. Normal for Or while loops we need to use for same.
  
 
-  
-  
+import numpy as np
+A=np.array([[12,7,3],[4,5,6],[7,8,9]])
+B=np.array([[5,8,1,2],[6,7,3,0],[4,5,9,1]])
+C=np.array([[0,0,0,0],[0,0,0,0],[0,0,0,0]])
+	
+# iterating by row of A 
+for i in range(len(A)): 
+
+	# iterating by coloum by B 
+	for j in range(len(B[0])): 
+
+		# iterating by rows of B 
+		for k in range(len(B)): 
+			C[i][j] += A[i][k] * B[k][j] 
+
+for r in C: 
+	print(r) 
+ 
+ Output ::
+ 
+[114 160  60  27]
+[74  97   73  14]
+[119 157 112  23]
+
  
  
  
