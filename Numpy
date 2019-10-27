@@ -4,6 +4,7 @@
 
 # In this example depending on dtype output values will be changed. 
 # Means we can convert the elements in an array by defining the data type.
+# One important point is Numpy was Implemented in C languag.
 
 import numpy as np
 a=np.array([1,2,3,4,5,6], dtype = int )
@@ -904,9 +905,147 @@ for x in np.nditer(a, flags = ['external_loop'], order = 'F'):
  
  [0 3] [1 4] [2 5] 
  
+# In this case, there is some difference when the print statement contains the  print (x,end=' ') and print (x)
+
+************************************NumPy - Array Manipulation********************************************************
+***********Changing Shape *******
+
+# There are several routines are availeble in Numpy package for manipulation of elements in ndarray object. Below are some of the operations.
+
+# reshape --> We have seen this command examples in above examples. 
+# This will change the shape of the array with out chaning the elements in the array.
+
+#flat --> This function returns a 1-D iterator over the array.
+
+import numpy as np
+a=np.arange(6).reshape(3,2)
+print (a)
+b=a.flat[3]
+print (b)
+
+Output :: 
+
+print (a) :: 
+[[0 1]
+ [2 3]
+ [4 5]]
+
+print (b) ::
+
+3
+
+# flatten -->  This function returns a copy of an array collapsed into one dimension. 
+# Syntax --> ndarray.flatter(order)
+
+import numpy as np
+a=np.arange(6).reshape(3,2)
+print (a)
+b=a.flatten(order='F')
+print (b)
+
+Output ::
+print (a) 
+[[0 1]
+ [2 3]
+ [4 5]]
+
+print (b) :: 
+
+[0 2 4 1 3 5] 
+
+import numpy as np
+a=np.arange(6).reshape(3,2)
+print (a)
+b=a.flatten(order='c')
+print (b)
+
+Output ::
+
+print (a) ::
+
+[[0 1]
+ [2 3]
+ [4 5]]
  
+ print (b) :: [0 1 2 3 4 5] 
  
+ # ravel --> This function returns a flattened one-dimensional array. A copy is made only if needed.
+ # The returned array will have the same type as that of the input array. The function takes one parameter.
  
+import numpy as np
+a=np.arange(6).reshape(3,2).ravel(order='c')
+print (a)
+
+Output ::
+
+[0 1 2 3 4 5]
+
+import numpy as np
+a=np.arange(6).reshape(3,2).ravel(order='F')
+print (a)
+
+Output ::
+
+[0 2 4 1 3 5]
+
+############ Below are some of Transpose Operations in *********** Numpy Array Manipulation##########################
+
+# transpose --> This operation will convert rows to columns and columns to rows.
+
+import numpy as np
+a=np.arange(6).reshape(3,2)
+print (a)
+b=np.transpose(a)
+print (b)
+
+Output ::
+
+print (a) :: 
+[[0 1]
+ [2 3]
+ [4 5]]
+ 
+ print (b) :: 
+ 
+ [[0 2 4]
+ [1 3 5]]
+ 
+ # ndarray.T  --> This operation will convert rows to columns and columns to rows.
+ 
+import numpy as np
+a=np.arange(6).reshape(3,2)
+print (a)
+b=a.T
+print (b)
+ 
+Output ::
+
+print (a) :: 
+[[0 1]
+ [2 3]
+ [4 5]]
+ 
+ print (b) :: 
+ 
+ [[0 2 4]
+ [1 3 5]]
+ 
+ #moveaxis --> This function moves the axes of array to new position.
+ # Other axes remain in their original order.
+ # Synatx --> moveaxis(array,source,destionation)
+ 
+import numpy as np
+a = np.ones((3,4,5))
+a.shape
+b=np.moveaxis(a,0,1)
+b.shape
+
+Output ::
+
+a.shape :: ( 3,4,5)
+b.shape :: ( 4,3,5)
+
+# swapaxes --> Need to discuss more on this function , at the time of discussion.
  
 
 
