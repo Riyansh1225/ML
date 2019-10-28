@@ -1324,6 +1324,365 @@ Output ::
 
 # split --> This function divides the array into subarrays along a specified axis.
 # Synatx --> numpy.split(ary, indices_or_sections, axis)
+# indices_or_sections --> This is an integer , doesn't equally divid the arrya. 
+# For an array of length l that should be split into n sections, it returns l % n sub-arrays of size l//n + 1 and the rest of size l//n.
+
+import numpy as np 
+a = np.arange(11)
+print (a)
+b=np.array_split(a,3)
+print (b)
+
+Output ::
+
+print (a) ::
+
+[ 0  1  2  3  4  5  6  7  8  9 10]
+
+print (b) ::
+
+[array([0, 1, 2, 3]), array([4, 5, 6, 7]), array([ 8,  9, 10])]
+
+Example 2 ::
+
+import numpy as np 
+a = np.arange(8)
+print (a)
+b=np.array_split(a,3)
+print (b)
+
+
+Output ::
+
+print (a) ::
+[0 1 2 3 4 5 6 7]
+
+print (b) ::
+
+[array([0, 1, 2]), array([3, 4, 5]), array([6, 7])]
+
+# numpy.hsplit ---> The hsplit() function is used to split an array into multiple sub-arrays horizontally (column-wise).
+hsplit is equivalent to split with axis=1, the array is always split along the second axis regardless of the array dimension.
+
+
+import numpy as np 
+a = np.arange(16).reshape(4,4) 
+print (a)
+b = np.hsplit(a,2) 
+print (b)
+
+Output ::
+print (a) ::
+
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]]
+ 
+ print (b) ::
+ 
+ [array([[ 0,  1],
+       [ 4,  5],
+       [ 8,  9],
+       [12, 13]]), 
+       
+  array([[ 2,  3],
+       [ 6,  7],
+       [10, 11],
+       [14, 15]])]
+
+Example #2 ::
+
+import numpy as np 
+a = np.arange(12)
+print (a)
+b=np.hsplit(a,2)
+print (b) 
+
+Output ::
+
+print (a) :: [ 0  1  2  3  4  5  6  7  8  9 10 11]
+
+print (b) :: 
+
+[array([0, 1, 2, 3, 4, 5]), array([ 6,  7,  8,  9, 10, 11])]
+
+#numpy.vsplit --> The vsplit() function is used to split an array into multiple sub-arrays vertically (row-wise).
+# vsplit is equivalent to split with axis=0 (default), the array is always split along the first axis regardless of the array dimension.
+
+Example 1# ::
+
+import numpy as np 
+a = np.arange(16).reshape(4,4) 
+print (a)
+b = np.vsplit(a,2) 
+print (b)
+
+Output ::
+
+print (a) ::
+
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]
+ [12 13 14 15]]
+ 
+ print (b) ::
+ 
+ [array([[0, 1, 2, 3],
+       [4, 5, 6, 7]]), 
+ array([[ 8,  9, 10, 11],
+       [12, 13, 14, 15]])]
+
+
+############ Below are some of Adding / Removing Elements Operations in *********** Numpy Array Manipulation########################
+
+# numpy.resize(arr, shape) --> The resize() function is used to create new array with the specified shape.
+# If the new array is larger than the original array, then the new array is filled with repeated copies of a.
+# Return value :: The new array is formed from the data in the old array, repeated if necessary to fill out the required number of elements. 
+# The data are repeated in the order that they are stored in memory.
+
+Example 1 ::
+
+import numpy as np
+a= np.array([[1,2], [3,4]])
+print (a)
+b=np.resize(a, (3,2))
+print (b)
+
+Output ::
+
+print (a) ::
+
+[[1 2]
+ [3 4]]
+ 
+print (b) ::
+
+[[1 2]
+ [3 4]
+ [1 2]]
+ 
+ # numpy.append --> The append() function is used to append values to the end of an given array.
+ # The append operation is not inplace, a new array is allocated. 
+ # Also the dimensions of the input arrays must match otherwise ValueError will be generated.
+ 
+ # Syntax --> numpy.append(arr, values, axis) 
+ 
+import numpy as np
+np.append ([0, 1, 2], [[3, 4, 5], [6, 7, 8]])
+
+Output ::
+
+array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+
+import numpy as np 
+a = np.array([[1,2,3],[4,5,6]]) 
+print (np.append(a, [7,8,9])) 
+print (np.append(a, [[7,8,9]],axis = 0))
+print ('\n')  
+print ('Append elements along axis 1:') 
+print (np.append(a, [[5,5,5],[7,8,9]],axis = 1))
+
+Output ::
+print (np.append(a, [7,8,9])) ::
+[1 2 3 4 5 6 7 8 9]
+
+print (np.append(a, [[7,8,9]],axis = 0)) :: 
+
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+
+Append elements along axis 1:
+
+print (np.append(a, [[5,5,5],[7,8,9]],axis = 1)) :: 
+
+[[1 2 3 5 5 5]
+ [4 5 6 7 8 9]]
+ 
+ 
+# numpy.insert --> This function inserts values in the input array along the given axis and before the given index. 
+# If the type of values is converted to be inserted, it is different from the input array. 
+# Insertion is not done in place and the function returns a new array. 
+# Also, if the axis is not mentioned, the input array is flattened.
+
+# Syntax --> numpy.insert(arr, obj, values, axis) 
+
+Obj --> The index before which insertion is to be made.
+values --> The array of values to be inserted
+axis --> The axis along which to insert. If not given, the input array is flattened.
+
+# Example 1 :: 
+
+import numpy as np 
+a = np.array([[1,2],[3,4],[5,6]]) 
+
+print ('First array:') 
+print (a)
+print ('\n')  
+
+print ('Axis parameter not passed. The input array is flattened before insertion.')
+print (np.insert(a,3,[11,12])) 
+print ('\n')  
+print ('Axis parameter passed. The values array is broadcast to match input array.')
+
+print ('Broadcast along axis 0:') 
+print (np.insert(a,1,[11],axis = 0)) 
+print ('\n') 
+
+print ('Broadcast along axis 1:') 
+print (np.insert(a,1,11,axis = 1))
+
+Output ::
+
+First array:
+[[1 2]
+ [3 4]
+ [5 6]]
+
+
+Axis parameter not passed. The input array is flattened before insertion.
+[ 1  2  3 11 12  4  5  6]
+
+
+Axis parameter passed. The values array is broadcast to match input array.
+Broadcast along axis 0:
+[[ 1  2]
+ [11 11]
+ [ 3  4]
+ [ 5  6]]
+
+
+Broadcast along axis 1:
+[[ 1 11  2]
+ [ 3 11  4]
+ [ 5 11  6]]
+ 
+#numpy.delete ---> This function returns a new array with the specified subarray deleted from the input array. 
+# As in case of insert() function, if the axis parameter is not used, the input array is flattened.
+
+# Syntax --> Numpy.delete(arr, obj, axis) 
+
+obj -->Can be a slice, an integer or array of integers, indicating the subarray to be deleted from the input array.
+axis --> The axis along which to delete. If not given, the input array is flattened.
+
+# Example 1 ::
+
+import numpy as np 
+a = np.arange(12).reshape(3,4) 
+print (a) 
+print (np.delete(a,5))
+print (np.delete(a,1,axis = 1)) 
+a = np.array([1,2,3,4,5,6,7,8,9,10]) 
+print (np.delete(a, np.s_[::2]))
+
+Output ::
+
+print (a) ::
+
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+ 
+print (np.delete(a,5)) ::
+
+[ 0  1  2  3  4  6  7  8  9 10 11]
+
+print (np.delete(a,1,axis = 1))  ::
+
+[[ 0  2  3]
+ [ 4  6  7]
+ [ 8 10 11]]
+ 
+ print (np.delete(a, np.s_[::2])) ::
+ 
+ [ 2  4  6  8 10]
+ 
+ # numpy.unique --> This function returns an array of unique elements in the input array. 
+ # The function can be able to return a tuple of array of unique vales and an array of associated indices. 
+ # Nature of the indices depend upon the type of return parameter in the function call.
+ 
+ Syntax --> numpy.unique(arr, return_index, return_inverse, return_counts) 
+ 
+import numpy as np 
+a = np.array([5,2,6,2,7,5,6,8,2,9]) 
+
+print ('First array:') 
+print (a) 
+print ('\n')  
+
+print ('Unique values of first array:') 
+u = np.unique(a) 
+print (u)
+print ('\n')  
+
+print ('Unique array and Indices array:') 
+u,indices = np.unique(a, return_index = True) 
+print (indices)
+print ('\n')  
+
+print ('We can see each number corresponds to index in original array:') 
+print (a)
+print ('\n')  
+
+print ('Indices of unique array:') 
+u,indices = np.unique(a,return_inverse = True) 
+print (u) 
+print ('\n') 
+
+print ('Indices are:') 
+print (indices)
+print ('\n')  
+
+print ('Reconstruct the original array using indices:') 
+print (u[indices])
+print ('\n')  
+
+print ('Return the count of repetitions of unique elements:') 
+u,indices = np.unique(a,return_counts = True) 
+print (u) 
+print (indices)
+
+
+Output ::
+
+First array:
+[5 2 6 2 7 5 6 8 2 9]
+
+
+Unique values of first array:
+[2 5 6 7 8 9]
+
+
+Unique array and Indices array:
+[1 0 2 4 7 9]
+
+
+We can see each number corresponds to index in original array:
+[5 2 6 2 7 5 6 8 2 9]
+
+
+Indices of unique array:
+[2 5 6 7 8 9]
+
+
+Indices are:
+[1 0 2 0 3 1 2 4 0 5]
+
+
+Reconstruct the original array using indices:
+[5 2 6 2 7 5 6 8 2 9]
+
+
+Return the count of repetitions of unique elements:
+[2 5 6 7 8 9]
+[3 2 2 1 1 1]
+
+
+
+
 
 
 
