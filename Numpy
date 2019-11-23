@@ -2176,8 +2176,46 @@ Applying angle() function:
 Applying angle() function again (result in degrees)
 [-90.  90.   0.  45.]
 
+**************************** NumPy - Statistical Functions *******************************************
 
+# numpy.amin() and numpy.amax() --> NumPy has quite a few useful statistical functions for finding minimum, maximum, percentile standard deviation and variance, etc. from the given elements in the array.
 
+import numpy as np 
+a = np.array([[3,7,5],[8,4,3],[2,4,9]]) 
+
+print ('Our array is:') 
+print (a) 
+print ('\n')  
+print ('Applying amin() function:') 
+print (np.amin(a,1)) 
+print ('\n')  
+print ('Applying amin() function again:')
+print (np.amin(a,0))
+print ('\n')  
+print ('Applying amax() function:') 
+print (np.amax(a)) 
+print ('\n')  
+print ('Applying amax() function again:') 
+print (np.amax(a, axis = 0))
+
+Output ::
+
+Our array is:
+[[3 7 5]
+ [8 4 3]
+ [2 4 9]]
+
+Applying amin() function:
+[3 3 2]
+
+Applying amin() function again:
+[2 4 3]
+
+Applying amax() function:
+9
+
+Applying amax() function again:
+[8 7 9]
 
 
 
