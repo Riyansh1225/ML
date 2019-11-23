@@ -2176,13 +2176,13 @@ Applying angle() function:
 Applying angle() function again (result in degrees)
 [-90.  90.   0.  45.]
 
-**************************** NumPy - Statistical Functions *******************************************
 
-# numpy.amin() and numpy.amax() --> NumPy has quite a few useful statistical functions for finding minimum, maximum, percentile standard deviation and variance, etc. from the given elements in the array.
+****************************************NumPy - Statistical Functions******************************************************
+
+# numpy.amin() and numpy.amax() --> These functions return the minimum and maximum from the elements in the given array along with specified axis.
 
 import numpy as np 
 a = np.array([[3,7,5],[8,4,3],[2,4,9]]) 
-
 print ('Our array is:') 
 print (a) 
 print ('\n')  
@@ -2217,7 +2217,232 @@ Applying amax() function:
 Applying amax() function again:
 [8 7 9]
 
+#numpy.ptp() --> The numpy.ptp() function returns the range (maximum-minimum) of values along an axis. 
+# Here range = ( maximum - minimum )
 
+import numpy as np 
+a = np.array([[3,7,5],[8,4,3],[2,4,9]]) 
+
+print ('Our array is:')
+print (a)
+print ('\n') 
+
+print ('Applying ptp() function:') 
+print (np.ptp(a))
+print ('\n')
+
+print ('Applying ptp() function along axis 1:') 
+print (np.ptp(a, axis = 1))
+print ('\n') 
+
+print ('Applying ptp() function along axis 0:')
+print (np.ptp(a, axis = 0)) 
+
+Output ::
+
+Our array is:
+[[3 7 5]
+ [8 4 3]
+ [2 4 9]]
+
+Applying ptp() function:
+7
+
+Applying ptp() function along axis 1:
+[4 5 7]
+
+Applying ptp() function along axis 0:
+[6 3 6]
+
+# numpy.percentile() --> Percentile (or a centile) is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations fall. 
+# numpy.percentile()  --> numpy.percentile(a, q, axis)
+
+import numpy as np 
+a = np.array([[30,40,70],[80,20,10],[50,90,60]]) 
+
+print ('Our array is:')
+print (a)
+print ('\n') 
+
+print ('Applying percentile() function:') 
+print (np.percentile(a,50))
+print ('\n')  
+
+print ('Applying percentile() function along axis 1:') 
+print (np.percentile(a,50, axis = 1))
+print ('\n')
+
+print ('Applying percentile() function along axis 0:') 
+print (np.percentile(a,50, axis = 0))
+
+Output ::
+
+Our array is:
+[[30 40 70]
+ [80 20 10]
+ [50 90 60]]
+
+Applying percentile() function:
+50.0
+
+Applying percentile() function along axis 1:
+[40. 20. 60.]
+
+Applying percentile() function along axis 0:
+[50. 40. 60.]
+
+# numpy.median() --> This function defines as the value separating the higher half of a data sample from the lower half.
+
+# How to find Median for numbers
+1.Arrange the numbers in order by size.
+2.If there is an odd number of terms, the median is the center term.
+3.If there is an even number of terms, add the two middle terms and divide by 2
+
+import numpy as np 
+a = np.array([[30,65,70],[80,95,10],[50,90,60]]) 
+
+print ('Our array is:')
+print (a)
+print ('\n')  
+
+print ('Applying median() function:') 
+print (np.median(a))
+print ('\n') 
+
+print ('Applying median() function along axis 0:') 
+print (np.median(a, axis = 0))
+print ('\n')  
+ 
+print ('Applying median() function along axis 1:') 
+print (np.median(a, axis = 1))
+
+Output ::
+
+Our array is:
+[[30 65 70]
+ [80 95 10]
+ [50 90 60]]
+
+Applying median() function:
+65.0
+
+Applying median() function along axis 0:
+[50. 90. 60.]
+
+Applying median() function along axis 1:
+[65. 80. 60.]
+
+#numpy.mean() --> Arithmetic mean is the sum of elements along an axis divided by the number of elements. 
+# The numpy.mean() function returns the arithmetic mean of elements in the array
+
+
+import numpy as np 
+a = np.array([[1,2,3],[3,4,5],[4,5,6]]) 
+
+print ('Our array is:')
+print (a) 
+print ('\n') 
+
+print ('Applying mean() function:') 
+print (np.mean(a)) 
+print ('\n')  
+
+print ('Applying mean() function along axis 0:') 
+print (np.mean(a, axis = 0)) 
+print ('\n')  
+
+print ('Applying mean() function along axis 1:') 
+print (np.mean(a, axis = 1))
+
+Output ::
+
+Our array is:
+[[1 2 3]
+ [3 4 5]
+ [4 5 6]]
+
+Applying mean() function:
+3.6666666666666665
+
+Applying mean() function along axis 0:
+[2.66666667 3.66666667 4.66666667]
+
+Applying mean() function along axis 1:
+[2. 4. 5.]
+
+
+# numpy.average() --> This will calculate the weighted average of elements in an array according to their respective weights gieven in another array.
+# Below is normal average function. 
+
+import numpy as np
+a=list(range(1,5))
+print (np.average(a))
+
+# The numpy.average() function computes the weighted average of elements in an array according to their respective weight given in another array.
+
+Considering an array [1,2,3,4] and corresponding weights [4,3,2,1], the weighted average is calculated by adding the product of the corresponding elements and dividing the sum by the sum of weights.
+
+# Weighted average = (1*4+2*3+3*2+4*1)/(4+3+2+1)
+
+import numpy as np 
+a = np.array([1,2,3,4]) 
+
+print ('Our array is:') 
+print (a) 
+print ('\n')  
+
+print ('Applying average() function:') 
+print (np.average(a)) 
+print ('\n') 
+
+# this is same as mean when weight is not specified 
+wts = np.array([4,3,2,1]) 
+print (wts)
+
+print ('Applying average() function again:')
+print (np.average(a,weights = wts)) 
+print ('\n')  
+
+# Returns the sum of weights, if the returned parameter is set to True. 
+print ('Sum of weights')
+print (np.average([1,2,3, 4],weights = [4,3,2,1], returned = True))
+
+
+Output ::
+
+Our array is:
+[1 2 3 4]
+
+Applying average() function:
+2.5
+
+[4 3 2 1]
+Applying average() function again:
+2.0
+
+Sum of weights
+(2.0, 10.0)
+
+# Standard Deviation --> Standard deviation is the square root of the average of squared deviations from mean. 
+# The formula for standard deviation is as follows.
+
+# std = sqrt(mean(abs(x - x.mean())**2))
+
+import numpy as np 
+print (np.std([1,2,3,4]))
+
+Output ::
+
+1.118033988749895
+
+# Variance --> Variance is the average of squared deviations.
+
+import numpy as np 
+print (np.var([1,2,3,4]))
+
+Output :: 
+
+1.25
 
 
 
