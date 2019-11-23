@@ -2444,6 +2444,37 @@ Output ::
 
 1.25
 
+############################################## NumPy - Sort, Search & Counting Functions #################################################
+
+# Numpy support variety of sorting functions.These sorting functions implments different sorting algorithms. 
+# Each of them have different characterstics , speed of execution , worst case performance, work space requried and stability of algorithms.
+
+# We have 3 sorts in Numpy --> i) quicksort ii) mergesort iii) heapsort 
+
+# numpy.sort() --> This function returns the sorted copy of the input array. 
+# Synatx --> numpy.sort(a, axis, kind, order)
+# If we don't specify any order default that order will be quicksort.
+
+import numpy as np
+a=np.array([[3,7],[1,2]])
+print (a)
+print(np.sort(a,axis=0))
+
+dt=np.dtype([('name','S10'),('age',int)])
+b=np.array([("test",21),("yyy",12),("uuu",13)],dtype=dt)
+print (b)
+print (np.sort(b, order = 'name'))
+
+Output ::
+
+[[3 7]
+ [1 2]]
+[[1 2]
+ [3 7]]
+[(b'test', 21) (b'yyy', 12) (b'uuu', 13)]
+[(b'test', 21) (b'uuu', 13) (b'yyy', 12)]
+
+# 
 
 
 
