@@ -2664,3 +2664,227 @@ Element-wise value of condition
 Extract elements using condition
 [0. 2. 4. 6. 8.]
 
+********************************************** NumPy - Byte Swapping ******************************************
+# numpy.ndarray.byteswap() --> 
+# We have seen the data stored in the memory of a computer depend on which architecture the CPU uses.
+# it may be little-endian ( least significant is stored in the smallest adderss ) Or big-endian ( most significant byte in the smallest address ).
+
+import numpy as np 
+a = np.array([1, 256, 8755], dtype = np.int16) 
+
+print ('Our array is:') 
+print (a)  
+
+print ('Representation of data in memory in hexadecimal form:')  
+print (map(hex,a))  
+# byteswap() function swaps in place by passing True parameter 
+
+print ('Applying byteswap() function:') 
+print (a.byteswap(True)) 
+
+print ('In hexadecimal form:') 
+print (map(hex,a)) 
+# We can see the bytes being swapped
+
+Output ::
+
+Our array is:
+[   1  256 8755]
+
+Representation of data in memory in hexadecimal form:
+<map object at 0x0000014B28636358>
+
+Applying byteswap() function:
+[  256     1 13090]
+In hexadecimal form:
+<map object at 0x0000014B28636358>
+
+**************************************** NumPy - Copies & Views ********************************************
+
+# While executing a function, some of them return a copy of the input array, while some return the view.
+# When the contents are physically stored in another location, it is called COPY.
+# If different view of same memory provided, we can call it as VIEW.
+
+# numpy.id () --> This will return the universal identifier of python object.
+# Change in shape of one , another with copy variable also changed.
+
+import numpy as np 
+a = np.arange(6) 
+
+print ('Our array is:') 
+print (a) 
+print ('\n') 
+
+print ('Applying id() function:') 
+print (id(a))  
+print ('\n')
+
+print ('a is assigned to b:') 
+b = a 
+print (b)  
+print ('\n')
+
+print ('b has same id():') 
+print (id(b))  
+print ('\n')
+
+print ('Change shape of b:') 
+b.shape = 3,2 
+print (b)  
+print ('\n')
+
+print ('Shape of a also gets changed:') 
+print (a)
+
+Output ::
+
+Our array is:
+[0 1 2 3 4 5]
+
+
+Applying id() function:
+1422311736624
+
+
+a is assigned to b:
+[0 1 2 3 4 5]
+
+
+b has same id():
+1422311736624
+
+
+Change shape of b:
+[[0 1]
+ [2 3]
+ [4 5]]
+
+
+Shape of a also gets changed:
+[[0 1]
+ [2 3]
+ [4 5]]
+ 
+ 
+ # NumPy has ndarray.view() method which is a new array object that looks at the same data of the original array.
+ 
+ 
+ import numpy as np 
+# To begin with, a is 3X2 array 
+a = np.arange(6).reshape(3,2) 
+
+print ('Array a:' )
+print (a) 
+print ('\n')
+
+print ('Create view of a:') 
+b = a.view() 
+print (b ) 
+print ('\n')
+
+print ('id() for both the arrays are different:') 
+print ('id() of a:')
+print (id(a))
+print ('\n')
+print ('id() of b:') 
+print (id(b))
+
+# Change the shape of b. It does not change the shape of a 
+b.shape = 2,3 
+
+print ('Shape of b:') 
+print (b)
+print ('\n')
+
+print ('Shape of a:') 
+print (a)
+
+
+Output ::
+
+Array a:
+[[0 1]
+ [2 3]
+ [4 5]]
+
+
+Create view of a:
+[[0 1]
+ [2 3]
+ [4 5]]
+
+
+id() for both the arrays are different:
+id() of a:
+1422311737424
+
+
+id() of b:
+1422307000448
+Shape of b:
+[[0 1 2]
+ [3 4 5]]
+
+
+Shape of a:
+[[0 1]
+ [2 3]
+ [4 5]]
+ 
+ # ndarray.copy() --> The ndarray.copy() function creates a deep copy. 
+ # It is a complete copy of the array and its data, and doesn’t share with the original array.
+ 
+ import numpy as np 
+a = np.array([[10,10], [2,3], [4,5]]) 
+
+print ('Array a is:') 
+print (a)
+
+print ('Create a deep copy of a:')
+b = a.copy() 
+print ('Array b is:')
+print (b)
+
+#b does not share any memory of a 
+print ('Can we write b is a') 
+print (b is a)
+
+print ('Change the contents of b:') 
+b[0,0] = 100 
+
+print ('Modified array b:') 
+print (b)  
+
+print ('a remains unchanged:') 
+print (a)
+
+Output ::
+
+Array a is:
+[[10 10]
+ [ 2  3]
+ [ 4  5]]
+Create a deep copy of a:
+Array b is:
+[[10 10]
+ [ 2  3]
+ [ 4  5]]
+Can we write b is a
+False
+Change the contents of b:
+Modified array b:
+[[100  10]
+ [  2   3]
+ [  4   5]]
+a remains unchanged:
+[[10 10]
+ [ 2  3]
+ [ 4  5]]
+ 
+ ******************************************** NumPy - Matrix Library ******************************************
+ 
+ 
+ 
+
+
+
