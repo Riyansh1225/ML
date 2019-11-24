@@ -2474,7 +2474,193 @@ Output ::
 [(b'test', 21) (b'yyy', 12) (b'uuu', 13)]
 [(b'test', 21) (b'uuu', 13) (b'yyy', 12)]
 
-# 
+# numpy.argsort() --> This function will do an indirect sort of input array along with given axis specified by the kind of keyword.
+
+Example :: 
+
+import numpy as np 
+# input array 
+in_arr = np.array([ 2, 0, 1, 5, 4, 1, 9]) 
+print ("Input unsorted array : ", in_arr) 
+
+out_arr = np.argsort(in_arr) 
+print ("Output sorted array indices : ", out_arr) 
+print("Output sorted array : ", in_arr[out_arr]) 
+
+Output ::
+
+Input unsorted array :  [2 0 1 5 4 1 9]
+Output sorted array indices :  [1 2 5 0 4 3 6]
+Output sorted array :  [0 1 1 2 4 5 9]
 
 
+# numpy.lexsort() --> 
+# Performs indirect sort using a sequence of keys
+# Sort by a, then by b 
+# Return the type ndarray of integers array of indicated the sort of the keys along the specified axis
+# Occupies species as new array of sorted indices pair wise is returned
+
+
+import numpy as np 
+
+# Numpy array created 
+a =  ('raju','anil','ravi','amar')  # First column 
+b = ('f.y.', 's.y.', 's.y.', 'f.y.')  # Second column 
+print (a)
+print (b)
+print('column a, column b') 
+for (i, j) in zip(a, b): 
+	print(i, ' ', j) 
+
+ind = np.lexsort((b, a)) # Sort by a then by b 
+print('Sorted indices->', ind) 
+
+Output ::
+
+('raju', 'anil', 'ravi', 'amar')
+('f.y.', 's.y.', 's.y.', 'f.y.')
+column a, column b
+raju   f.y.
+anil   s.y.
+ravi   s.y.
+amar   f.y.
+Sorted indices-> [3 1 0 2]
+
+# numpy.argmax() and numpy.argmin()  --> These functions used to find maximum number and minimimum number in an array for the given axis.
+
+# The argmax() indicates the max number indexes in an array.
+
+# Python Program illustrating 
+# working of argmax() 
+
+import numpy as geek 
+
+# Working on 2D array 
+array = geek.arange(12).reshape(3, 4) 
+print("INPUT ARRAY : \n", array) 
+
+# No axis mentioned, so works on entire array 
+print("\nMax element : ", geek.argmax(array)) 
+
+# returning Indices of the max element 
+# as per the indices 
+print("\nIndices of Max element : ", geek.argmax(array, axis=0)) 
+print("\nIndices of Max element : ", geek.argmax(array, axis=1)) 
+
+Output ::
+
+Our array is:
+[[30 40 70]
+ [80 20 10]
+ [50 90 60]]
+
+
+Applying argmax() function:
+7
+
+Index of maximum number in flattened array
+[30 40 70 80 20 10 50 90 60]
+
+Array containing indices of maximum along axis 0:
+[1 2 0]
+
+Array containing indices of maximum along axis 1:
+[2 0 1]
+
+Applying argmin() function:
+5
+
+Flattened array:
+10
+
+Flattened array along axis 0:
+[0 1 1]
+
+Flattened array along axis 1:
+[0 2 0]
+
+#numpy.nonzero()-->This function is used to Compute the indices of the elements that are non-zero.
+#It returns a tuple of arrays, one for each dimension of arr, containing the indices of the non-zero elements in that dimension.
+#The corresponding non-zero values in the array can be obtained with arr[nonzero(arr)] .
+#To group the indices by element, rather than dimension we can use transpose(nonzero(arr)).
+
+import numpy as np
+a=np.array([[30,40,50],[0,3,44],[89,23,44]])
+print (a)
+b=np.nonzero(a)
+print (b)
+
+Output ::
+
+[[30 40 50]
+ [ 0  3 44]
+ [89 23 44]]
+(array([0, 0, 0, 1, 1, 2, 2, 2], dtype=int64), array([0, 1, 2, 1, 2, 0, 1, 2], dtype=int64))
+
+Example 2 :: 
+
+import numpy as np
+a=np.array([[30,40,50],[20,3,44],[89,23,44]])
+print (a)
+b=np.nonzero(a)
+print (b)
+
+Output ::
+
+[[30 40 50]
+ [20  3 44]
+ [89 23 44]]
+(array([0, 0, 0, 1, 1, 1, 2, 2, 2], dtype=int64), array([0, 1, 2, 0, 1, 2, 0, 1, 2], dtype=int64))
+
+# numpy.where() --> The where() function returns the indices of elements in an input array where the given condition is satisfied.
+
+Example 1 :: 
+
+import numpy as np 
+x = np.arange(9.).reshape(3, 3) 
+print ('Our array is:') 
+print (x)  
+print ('Indices of elements > 3') 
+y = np.where(x > 3) 
+print (y)
+print ('Use these indices to get elements satisfying the condition') 
+print (x[y])
+
+Output :: 
+
+Our array is:
+[[0. 1. 2.]
+ [3. 4. 5.]
+ [6. 7. 8.]]
+Indices of elements > 3
+(array([1, 1, 2, 2, 2], dtype=int64), array([1, 2, 0, 1, 2], dtype=int64))
+Use these indices to get elements satisfying the condition
+[4. 5. 6. 7. 8.]
+
+#numpy.extract() --> The extract() function returns the elements satisfying any condition
+
+
+import numpy as np 
+x = np.arange(9.).reshape(3, 3) 
+print 'Our array is:' 
+print x  
+# define a condition 
+condition = np.mod(x,2) == 0 
+print 'Element-wise value of condition' 
+print condition  
+print 'Extract elements using condition' 
+print np.extract(condition, x)
+
+Output ::
+
+Our array is:
+[[0. 1. 2.]
+ [3. 4. 5.]
+ [6. 7. 8.]]
+Element-wise value of condition
+[[ True False  True]
+ [False  True False]
+ [ True False  True]]
+Extract elements using condition
+[0. 2. 4. 6. 8.]
 
