@@ -3102,10 +3102,63 @@ Output ::
 [ 7  9 11 13 15 17 19 21 23 25]
 
 Here the graphical representaion will show.
+
+Example 2 ::
+
+import numpy as np
+import matplotlib.pyplot as plt 
+x = np.arange(0, 3 * np.pi, 0.1) 
+#print (x)
+y = np.sin(x)
+#print (y)
+plt.title('Sinewave form')
+plt.plot(x,y,'r--')
+plt.show()
+
+# subplot() ---> The subplot function allows you to plot different things in same figure. 
+
 ￼
+import numpy as np 
+import matplotlib.pyplot as plt  
+   
+# Compute the x and y coordinates for points on sine and cosine curves 
+x = np.arange(0, 3 * np.pi, 0.1) 
+y_sin = np.sin(x) 
+y_cos = np.cos(x)  
+   
+# Set up a subplot grid that has height 2 and width 1, 
+# and set the first such subplot as active. 
+plt.subplot(2, 1, 1)
+   
+# Make the first plot 
+plt.plot(x, y_sin) 
+plt.title('Sine')  
+   
+# Set the second subplot as active, and make the second plot. 
+plt.subplot(2, 1, 2) 
+plt.plot(x, y_cos) 
+plt.title('Cosine')  
+   
+# Show the figure. 
+plt.show()
+
+Output :: Here in output, we will get the two figures with on the same graph.
+
+# bar() ---> The pyplot submodule provides bar() function to generate bar graphs.
 
 
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.arange(4)
+money = [1, 2, 5, 6]
+plt.ylabel('Millions')
+plt.xlabel('Top Tycoons')
+plt.title('Richest in the World')
+plt.bar(x, money)
+plt.xticks(x, ('Gates', 'Warren', 'Mittal', 'Ambani'))
+plt.show()
 
+# Here the x axis represents the x - axis position and y-axis represents the height of that bar.
 
 
  
