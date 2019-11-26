@@ -3079,9 +3079,30 @@ Inner product:
 # It is used along with Numpy to provide an environment that is an effecive open source alternative for Matlib.
 # It can be used in graphical tool kit like PyQt and wxPython.
 # We can import this package into python script by adding the below function 
+# This package is availble in binary distrubution as well as source code.
 
 # from matplotlib import pyplot as plt --> Here pyplot is most important lib used to draw the 2D data.
+# pyplot() is the most important function available in matlibplot lib
 
+import numpy as np
+from matplotlib import pyplot as plt 
+x=np.arange(1,11)
+print (x)
+y=2*x+5
+print (y)
+plt.title("Matplotlib demo") 
+plt.xlabel("x axis caption") 
+plt.ylabel("y axis caption") 
+plt.plot(x,y,'m--') 
+plt.show()
+
+Output ::
+
+￼[ 1  2  3  4  5  6  7  8  9 10]
+[ 7  9 11 13 15 17 19 21 23 25]
+
+Here the graphical representaion will show.
+￼
 
 
 
