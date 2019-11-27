@@ -1,1 +1,10 @@
-
+Pandas is high performance ans easy-to-use data structure.
+This is mainly useful for data cleaning and analysis.
+Pandas library use the most of the functionalities of the Numpy. Numpy is mandatory to understand the Pandas.
+Pandas word derived from the Panel data- an Econometrics from Multidimensional data.
+Using Pandas, we can accomplish five typical steps of the preprocessing of the data. 
+1. Load
+2. Prepare
+3. manipulate
+4. model 
+5. Analyze
