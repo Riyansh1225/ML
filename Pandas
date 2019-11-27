@@ -8,3 +8,53 @@ Using Pandas, we can accomplish five typical steps of the preprocessing of the d
 3. manipulate
 4. model 
 5. Analyze
+
+Uses of Pandas in Python ::
+
+1. Python become strong script in data analysis because of Pandas.
+2. Fast and effective Dataframe object with default and customized indexing.
+3. Tools for loading data into in-memory data objects from different file formates.
+4. Data alignment and integrated handling of missing data.
+5. Reshaping and pivoting of data sets.
+6. Lable-base slicing , indexing and subsetting of large data sets.
+7. Columns fron data structre can be deleted or inserted.
+8. Group by data for aggregation and transformation.
+9. High performance merging and joining of data.
+10. Time series functionlaity.
+
+Pandas deal with below three data structure.
+
+1. Series 
+2. DataFrame 
+3. Panel
+
+These data structure are build on top of the Numpy array, which means they are fast.
+
+Mutable ---> A mutable object can be changed after creating the objct. Means contensts can be changed.
+           Eg :: int , float , bool , tuple etc.
+Immutable ---> An immutable object cannot be changed once its created. Eg : list , set , dict etc..
+
+--> All Pandas data structure are value mutable ( can be changed ) and except series all are size mutable. Series is size immutable.
+
+--> Data Frames are mostly used data structure in Pandas. Panel is used less.
+
+Below is some properties for data structure of Pandas.
+
+1. Series 
+
+  a. Homogeneous data
+  b. Size Immutable
+  c. Values of Data mutable
+  
+2. Data Frame 
+
+  a. Heterogeneous data
+  b. Size Mutable
+  c. Data Mutable 
+  
+3. Panel 
+
+  a. Heterogeneous data
+  b. Size Mutable
+  c. Data Mutable
+   
