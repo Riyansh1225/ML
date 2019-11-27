@@ -58,3 +58,5 @@ Below is some properties for data structure of Pandas.
   b. Size Mutable
   c. Data Mutable
    
+ Homogeneous data --> If the variables of same data , we can call as Homogeneous data ( binary Or  categorical ) 
+ Heterogeneous data --> If the variables of different type od data , we can call as Heterogeneous data ( binary + categorical ) 
