@@ -451,6 +451,227 @@ d  3.0  3  8.0  6.0
 e  4.0  4  9.0  8.0
 f  NaN  5  NaN  NaN
 
+# Deleting Column from the Data Frame 
+
+import pandas as pd
+import numpy as np
+x={'a':pd.Series(np.arange(5), index=['a','b','c','d','e'],dtype=int),'b':pd.Series(np.arange(6),index=['a','b','c','d','e','f'])}
+d=pd.DataFrame(x)
+print (d)
+print ('\n')
+print (d['a'])
+d['c'] = pd.Series(np.arange(5,10), index=['a','b','c','d','e'])
+e=pd.DataFrame(d)
+print (e)
+d['d'] = d['a'] + d['b']
+f=pd.DataFrame(d)
+print (f)
+d['h'] = d['c'] - d['a']
+i=pd.DataFrame(d)
+print (i)
+del i['c']
+print (i)
+i.pop('d')
+print (i)
+
+
+Output ::
+
+     a  b
+a  0.0  0
+b  1.0  1
+c  2.0  2
+d  3.0  3
+e  4.0  4
+f  NaN  5
+
+
+a    0.0
+b    1.0
+c    2.0
+d    3.0
+e    4.0
+f    NaN
+Name: a, dtype: float64
+     a  b    c
+a  0.0  0  5.0
+b  1.0  1  6.0
+c  2.0  2  7.0
+d  3.0  3  8.0
+e  4.0  4  9.0
+f  NaN  5  NaN
+     a  b    c    d
+a  0.0  0  5.0  0.0
+b  1.0  1  6.0  2.0
+c  2.0  2  7.0  4.0
+d  3.0  3  8.0  6.0
+e  4.0  4  9.0  8.0
+f  NaN  5  NaN  NaN
+     a  b    c    d    h
+a  0.0  0  5.0  0.0  5.0
+b  1.0  1  6.0  2.0  5.0
+c  2.0  2  7.0  4.0  5.0
+d  3.0  3  8.0  6.0  5.0
+e  4.0  4  9.0  8.0  5.0
+f  NaN  5  NaN  NaN  NaN
+     a  b    d    h
+a  0.0  0  0.0  5.0
+b  1.0  1  2.0  5.0
+c  2.0  2  4.0  5.0
+d  3.0  3  6.0  5.0
+e  4.0  4  8.0  5.0
+f  NaN  5  NaN  NaN
+     a  b    h
+a  0.0  0  5.0
+b  1.0  1  5.0
+c  2.0  2  5.0
+d  3.0  3  5.0
+e  4.0  4  5.0
+f  NaN  5  NaN
+
+# Row Selection, Addition, and Deletion ::
+
+# Selection by Label ---->
+
+# Here loc is used to select the particular row from the Data Frame.
+
+import pandas as pd
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print (df.loc['b'])
+
+Output ::
+
+  one  two
+a  1.0    1
+b  2.0    2
+c  3.0    3
+d  NaN    4
+one    2.0
+two    2.0
+Name: b, dtype: float64
+
+# # Selection by integer location ---->
+
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([5, 6, 7, 8], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print (df)
+print (df.iloc[2])
+
+Output ::
+
+   one  two
+a  1.0    5
+b  2.0    6
+c  3.0    7
+d  NaN    8
+one    3.0
+two    7.0
+Name: c, dtype: float64
+
+# Slice Rows --> Multiple rows can be selected using ‘ : ’ operator.
+
+import pandas as pd
+
+d = {'one' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'two' : pd.Series([5, 6, 7, 8], index=['a', 'b', 'c', 'd'])}
+
+df = pd.DataFrame(d)
+print (df)
+print (df[2:4])
+
+
+Output ::
+
+   one  two
+a  1.0    5
+b  2.0    6
+c  3.0    7
+d  NaN    8
+   one  two
+c  3.0    7
+d  NaN    8
+
+# Addition of Rows ---> 
+# Add new rows to a DataFrame using the append function. 
+# This function will append the rows at the end.
+
+Example 1 ::
+
+import pandas as pd
+df = pd.DataFrame([[1, 2], [3, 4]], columns = ['a','b'])
+print (df)
+print ('\n')
+df2 = pd.DataFrame([[5, 6], [7, 8]], columns = ['a','b'])
+print (df2)
+print ('\n')
+df = df.append(df2)
+print( df )
+
+Output ::
+
+   a  b
+0  1  2
+1  3  4
+
+
+   a  b
+0  5  6
+1  7  8
+
+
+   a  b
+0  1  2
+1  3  4
+0  5  6
+1  7  8
+
+# Deletion of Rows --> Use index label to delete or drop rows from a DataFrame. If label is duplicated, then multiple rows will be dropped.
+
+# If you observe, in the above example, the labels are duplicate. Let us drop a label and will see how many rows will get dropped.
+
+import pandas as pd
+df = pd.DataFrame([[1, 2], [3, 4]], columns = ['a','b'])
+print (df)
+print ('\n')
+df2 = pd.DataFrame([[5, 6], [7, 8]], columns = ['a','b'])
+print (df2)
+print ('\n')
+df = df.append(df2)
+print( df )
+print ('\n')
+df1=df.drop(0)
+print (df1)
+
+Output ::
+
+   a  b
+0  1  2
+1  3  4
+
+
+   a  b
+0  5  6
+1  7  8
+
+
+   a  b
+0  1  2
+1  3  4
+0  5  6
+1  7  8
+
+
+   a  b
+1  3  4
+1  7  8
+
 
 
 
