@@ -213,4 +213,51 @@ a    7
 t    8
 dtype: int64
 
-# 
+# Retrieve Data Using Label (Index) ::
+
+A Series is like a fixed-size dict in that you can get and set values by index label.
+
+import numpy as np
+import pandas as pd
+x=np.array([1,2,3,4,5,6,7])
+a=pd.Series(x,index=['x','v','r','y','u','a','t'])
+print (a['u'])
+
+Output ::
+
+5
+
+Example 2 ::
+
+import numpy as np
+import pandas as pd
+x=np.array([1,2,3,4,5,6,7])
+a=pd.Series(x,index=['x','v','r','y','u','a','t'])
+print (a[:4])
+
+Output ::
+
+x    1
+v    2
+r    3
+y    4
+dtype: int32
+
+Example 3 ::
+
+import numpy as np
+import pandas as pd
+x=np.array([1,2,3,4,5,6,7])
+a=pd.Series(x,index=['x','v','r','y','u','a','t'])
+print (a[['r','u','a']])
+
+Output ::
+
+r    3
+u    5
+a    6
+dtype: int32
+
+*********************************** Python Pandas - DataFrame ***************************************
+
+
