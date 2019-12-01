@@ -1,4 +1,4 @@
-Pandas is high performance ans easy-to-use data structure.
+Pandas is high performance and easy-to-use data structure.
 This is mainly useful for data cleaning and analysis.
 Pandas library use the most of the functionalities of the Numpy. Numpy is mandatory to understand the Pandas.
 Pandas word derived from the Panel data- an Econometrics from Multidimensional data.
@@ -60,3 +60,157 @@ Below is some properties for data structure of Pandas.
    
  Homogeneous data --> If the variables of same data , we can call as Homogeneous data ( binary Or  categorical ) 
  Heterogeneous data --> If the variables of different type od data , we can call as Heterogeneous data ( binary + categorical ) 
+ 
+ # Data frame is 2D Array with Hetrogenous data. Eg :: Data in table. 
+ 
+ ************************************** Series ****************************************
+ # Series are one dimensional array objects. Capable of hold any type of data in the objects.
+ # Synatx --> pandas.series(data,index,dtype,copy)
+ # A series can be created using different inpus like 
+    a. Array
+    b. Dict
+    c.Scalar value or constant
+    
+# Create an empty series ::    
+    
+import pandas as pd
+s=pd.Series()
+print (s)
+
+Output ::
+
+Series([], dtype: float64)
+
+# Create a Series from ndarray ::
+
+# If the data is an ndarry, then index passes must be of the same lenght. 
+# If no index is passed, then default will be range(n). where n is array length. ( 0,1,2,3,4,5...)
+
+import numpy as np
+import pandas as pd
+a=np.array([1,2,3,4,5,6])
+s=pd.Series(a)
+print (s)
+
+Output ::
+
+0    1
+1    2
+2    3
+3    4
+4    5
+5    6
+dtype: int32
+
+# Here Index will start from 0 to len(data)-1.
+
+import numpy as np
+import pandas as pd
+a=np.array([1,2,3,4,5,6])
+s=pd.Series(a,index=[2,6,7,8,9,1])
+print (s)
+
+Output ::
+
+2    1
+6    2
+7    3
+8    4
+9    5
+1    6
+dtype: int32
+
+# Create a Series from dict ::
+
+# A dict can be passes as input and if no index is specified, then dict is taken in sorted order to construct index.
+# if index is passes, then values is data corresponding to the lables in the index passed will be pulled out.
+
+Example 1 ::
+
+import numpy as np
+import pandas as pd
+#a=np.array(['a':1,'b':2,'c':3,'d':4,'e':5,'f':6])
+a={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6}
+s=pd.Series(a)
+#s=pd.Series(a,index=[2,6,7,8,9,1])
+print (s)
+
+Output ::
+
+a    1
+b    2
+c    3
+d    4
+e    5
+f    6
+dtype: int64
+
+Example 2 ::
+
+import numpy as np
+import pandas as pd
+a={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6}
+s=pd.Series(a,index=['c','d','a','b','f','e'])
+print (s)
+ 
+Output ::
+
+c    3
+d    4
+a    1
+b    2
+f    6
+e    5
+dtype: int64
+
+# In Index , if Missed values specified, we will mention that position as NaN.
+
+# Create a Series from Scalar
+
+# If data is Sclar values, Index must be specified. The value will be repeated to match the lenght of the index.
+
+import numpy as np
+import pandas as pd
+a=pd.Series(5,index=[1,2,3,4])
+print (a)
+
+Output ::
+
+1    5
+2    5
+3    5
+4    5
+dtype: int64
+
+# Accessing Data from Series with Position ::
+
+# Data in series can be accessed similar to that in an ndarray.
+
+Example 1 ::
+
+import pandas as pd
+a=pd.Series([2,3,4,5,6,7,8],index=['x','v','r','y','u','a','t'])
+print (a[0])
+
+Output ::
+
+2
+
+Example 2 :: 
+
+import pandas as pd
+a=pd.Series([2,3,4,5,6,7,8],index=['x','v','r','y','u','a','t'])
+print (a[:8])
+
+Output ::
+
+x    2
+v    3
+r    4
+y    5
+u    6
+a    7
+t    8
+dtype: int64
+
+# 
