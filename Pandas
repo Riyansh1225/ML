@@ -857,10 +857,248 @@ dtype: float64
 14    0.930962
 dtype: float64
 
-# 
+############################ DataFrame Basic Functionality ######################################################################
+
+
+# Tranpose --> This function will convert rows to columns and columns to rows.
+
+Example 1 :: 
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.T)
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+     a    b    c    d
+x  1.0  2.0  3.0  NaN
+y  1.0  2.0  3.0  4.0
+
+# axes --> Return the list of row axis lables and column axis lables
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.axes)
+
+Output ::
+
+    x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+[Index(['a', 'b', 'c', 'd'], dtype='object'), Index(['x', 'y'], dtype='object')]
+
+# dtypes --> Return the datatype of each column.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.dtypes)
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+x    float64
+y      int64
+dtype: object
+
+# empty --> Return the boolen value , whethe the object is empty or not. if the object is empty this will return as True else false.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.empty)
+
+
+Output ::
+
+    x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+False
+
+# ndim --> Returns the number of dimensions of the object. By definition, DataFrame is a 2D object.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.ndim)
+
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+2
+
+# shape --> Returns a tuple representing the dimensionality of the DataFrame. 
+# Tuple (a,b), where a represents the number of rows and b represents the number of columns.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.shape)
+
+Output ::
+
+    x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+(4, 2)
+
+# size --> Returns the number of elements in DataFrame.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.size)
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+8
+
+# values --> Return the actual data in DataFrame.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.values)
+
+
+Output ::
+
+    x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+[[ 1.  1.]
+ [ 2.  2.]
+ [ 3.  3.]
+ [nan  4.]]
+ 
+ # Head & Tail --->
+ 
+ # Head --> To view a small sample of a DataFrame object, use the head() and tail() methods. 
+ # head() returns the first n rows (observe the index values). 
+ # The default number of elements to display is five, but you may pass a custom number.
+ 
+ # Head --> 
+ 
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.head(1))
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+     x  y
+a  1.0  1
+
+# Tail () --> tail() returns the last n rows (observe the index values). 
+# The default number of elements to display is five, but you may pass a custom number.
+
+import pandas as pd
+d = {'x' : pd.Series([1, 2, 3], index=['a', 'b', 'c']), 
+   'y' : pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print (df)
+print ('\n')
+print (df.tail(2))
+
+Output ::
+
+     x  y
+a  1.0  1
+b  2.0  2
+c  3.0  3
+d  NaN  4
+
+
+     x  y
+c  3.0  3
+d  NaN  4
 
 
 
+
+
+
+ 
+ 
 
 
 
