@@ -1092,13 +1092,511 @@ d  NaN  4
 c  3.0  3
 d  NaN  4
 
+*********************************** Python Pandas - Descriptive Statistics ***********************************
+
+# A large number of methods collectively compute descriptive statistics and other releated operatins on DataFrame.
+
+# Generally these operations take axis as input. Default axis=0 means rows and axis=1 means columns.
+
+Sum() ::
+
+Example 1 ::
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33])}
+b=pd.DataFrame(a)
+print (b)
+print (b.sum())
+
+# If we don't give any axis information in code, default it will consider as axis=0.
+
+Output ::
+
+   Seq          Name   Age
+0    1         Phani  34.0
+1    2         Aruna  29.0
+2    3       Riyansh   1.0
+3    4      Saaharsh   0.1
+4    5  Koteswararao  59.0
+5    6       Lakshmi  51.0
+6    7        Satish  37.0
+7    8      Srinivas  33.0
+Seq                                                    36
+Name    PhaniArunaRiyanshSaaharshKoteswararaoLakshmiSa...
+Age                                                 244.1
+dtype: object
 
 
+# Axis=1 --> it will sum up the columns information.
+
+Example 1:: 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([35,29,1,0.1,59,51,37,33]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.sum(1))
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  35.0     3
+1    2         Aruna  29.0     4
+2    3       Riyansh   1.0     5
+3    4      Saaharsh   0.1     6
+4    5  Koteswararao  59.0     7
+5    6       Lakshmi  51.0     8
+6    7        Satish  37.0     2
+7    8      Srinivas  33.0     3
+0    38.0
+1    35.0
+2     9.0
+3    10.1
+4    71.0
+5    65.0
+6    46.0
+7    44.0
+dtype: float64
+
+# mean() --> Returns the average value.
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.mean())
 
 
+Output ::
 
+   Seq          Name   Age  test
+0    1         Phani  34.0     3
+1    2         Aruna  29.0     4
+2    3       Riyansh   1.0     5
+3    4      Saaharsh   0.1     6
+4    5  Koteswararao  59.0     7
+5    6       Lakshmi  51.0     8
+6    7        Satish  37.0     2
+7    8      Srinivas  33.0     3
+Seq      4.5000
+Age     30.5125
+test     4.7500
+dtype: float64
+
+# std() --> This function returns the Bressel standard deviation of the numerical columns.
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)  Seq          Name   Age  test
+0    1         Phani  34.0     3
+1    2         Aruna  29.0     4
+2    3       Riyansh   1.0     5
+3    4      Saaharsh   0.1     6
+4    5  Koteswararao  59.0     7
+5    6       Lakshmi  51.0     8
+6    7        Satish  37.0     2
+7    8      Srinivas  33.0     3
+Seq      2.449490
+Age     21.009891
+test     2.121320
+dtype: float64
+
+# count () --> This will returns the Number of non-null observations.
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.count())
+
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq     9
+Name    8
+Age     9
+test    8
+dtype: int64
+
+# mode () --> This will returns the mode of values 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.mode())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+   Seq          Name   Age  test
+0    1         Aruna   0.1   3.0
+1    2  Koteswararao   1.0   NaN
+2    3       Lakshmi  10.0   NaN
+3    4         Phani  29.0   NaN
+4    5       Riyansh  33.0   NaN
+5    6      Saaharsh  34.0   NaN
+6    7        Satish  37.0   NaN
+7    8      Srinivas  51.0   NaN
+8    9           NaN  59.0   NaN
+
+
+# min () --> This will returns the minimum of the column value 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.min())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq     1.0
+Age     0.1
+test    2.0
+dtype: float64
+
+# Max () --.> This will returns the maximum of the value 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.max())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq      9.0
+Age     59.0
+test     8.0
+dtype: float64
+
+# Describe() --> This function will retun the summarize of the DataFrame.
+
+
+print (b.std())
+
+Output ::
+
+  Seq          Name   Age  test
+0    1         Phani  34.0     3
+1    2         Aruna  29.0     4
+2    3       Riyansh   1.0     5
+3    4      Saaharsh   0.1     6
+4    5  Koteswararao  59.0     7
+5    6       Lakshmi  51.0     8
+6    7        Satish  37.0     2
+7    8      Srinivas  33.0     3
+Seq      2.449490
+Age     21.009891
+test     2.121320
+dtype: float64
+
+# count () --> This will returns the Number of non-null observations.
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.count())
+
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq     9
+Name    8
+Age     9
+test    8
+dtype: int64
+
+# mode () --> This will returns the mode of values 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.mode())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+   Seq          Name   Age  test
+0    1         Aruna   0.1   3.0
+1    2  Koteswararao   1.0   NaN
+2    3       Lakshmi  10.0   NaN
+3    4         Phani  29.0   NaN
+4    5       Riyansh  33.0   NaN
+5    6      Saaharsh  34.0   NaN
+6    7        Satish  37.0   NaN
+7    8      Srinivas  51.0   NaN
+8    9           NaN  59.0   NaN
+
+
+# min () --> This will returns the minimum of the column value 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.min())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq     1.0
+Age     0.1
+test    2.0
+dtype: float64
+
+# Max () --.> This will returns the maximum of the value 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.max())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+Seq      9.0
+Age     59.0
+test     8.0
+dtype: float64
+
+# Describe() --> This function will retun the summarize of the DataFrame.
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.describe())
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+            Seq        Age     test
+count  9.000000   9.000000  8.00000
+mean   5.000000  28.233333  4.75000
+std    2.738613  20.808412  2.12132
+min    1.000000   0.100000  2.00000
+25%    3.000000  10.000000  3.00000
+50%    5.000000  33.000000  4.50000
+75%    7.000000  37.000000  6.25000
+max    9.000000  59.000000  8.00000
  
- 
+# describe --> This function have below 3 sub functions.
+
+1.object --> Summarizes String columns
+2.number --> Summarizes number columns
+3.all --> Summarizes all columns together (Should not pass it as a list value)
+
+# Object --> 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.describe(include='object'))
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+           Name
+count         8
+unique        8
+top     Lakshmi
+freq          1
+
+# number --> 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.describe(include='number'))
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+            Seq        Age     test
+count  9.000000   9.000000  8.00000
+mean   5.000000  28.233333  4.75000
+std    2.738613  20.808412  2.12132
+min    1.000000   0.100000  2.00000
+25%    3.000000  10.000000  3.00000
+50%    5.000000  33.000000  4.50000
+75%    7.000000  37.000000  6.25000
+max    9.000000  59.000000  8.00000
+
+# all --> This will summarize the all values 
+
+import numpy as np
+import pandas as pd
+a={'Seq':pd.Series([1,2,3,4,5,6,7,8,9]) , 'Name':pd.Series(['Phani','Aruna','Riyansh','Saaharsh','Koteswararao','Lakshmi','Satish','Srinivas']),
+   'Age':pd.Series([34,29,1,0.1,59,51,37,33,10]),'test':pd.Series([3,4,5,6,7,8,2,3])}
+b=pd.DataFrame(a)
+print (b)
+print (b.describe(include='all'))
+
+Output ::
+
+   Seq          Name   Age  test
+0    1         Phani  34.0   3.0
+1    2         Aruna  29.0   4.0
+2    3       Riyansh   1.0   5.0
+3    4      Saaharsh   0.1   6.0
+4    5  Koteswararao  59.0   7.0
+5    6       Lakshmi  51.0   8.0
+6    7        Satish  37.0   2.0
+7    8      Srinivas  33.0   3.0
+8    9           NaN  10.0   NaN
+             Seq     Name        Age     test
+count   9.000000        8   9.000000  8.00000
+unique       NaN        8        NaN      NaN
+top          NaN  Lakshmi        NaN      NaN
+freq         NaN        1        NaN      NaN
+mean    5.000000      NaN  28.233333  4.75000
+std     2.738613      NaN  20.808412  2.12132
+min     1.000000      NaN   0.100000  2.00000
+25%     3.000000      NaN  10.000000  3.00000
+50%     5.000000      NaN  33.000000  4.50000
+75%     7.000000      NaN  37.000000  6.25000
+max     9.000000      NaN  59.000000  8.00000
 
 
 
