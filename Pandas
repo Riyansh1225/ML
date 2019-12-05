@@ -1599,6 +1599,18 @@ min     1.000000      NaN   0.100000  2.00000
 max     9.000000      NaN  59.000000  8.00000
 
 
+************************************** Python Pandas - Function Application *************************************************
+
+# To apply your own or another librarys function to pandas object. To apply these pansas function applications we should aware of 3 methods.
+# Pipe ()
+# apply () 
+# applymap ()
+
+# The method of applying the function depends on whether your function expects to operate element - wise Or row wise Or Column wise.
+
+# Pipe () --> This is table wise function applications in Pandas. 
+# apply () --> This is row wise or Column wise function operation.
+# applymap () --> Element-wise function applications in Pandas.
 
 
 
