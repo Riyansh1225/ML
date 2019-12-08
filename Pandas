@@ -3481,7 +3481,363 @@ dtype: object
 4    False
 dtype: bool
 
-###### 
+********************************************* Python Pandas - Indexing and Selecting Data*******************************************
+
+# Indexing in pandas means , simply selecting particular row or column from the give DataFrame. 
+# Indexing means we can select all rows or some columns and other way around from the DataFrame.
+# Indexing also called as Subset Selection.
+
+# There are lot of ways to pull the data from DataFrame. Means using some indexing, we can pull the data from the DataFrame.
+
+	1.DataFrame.[] --> This function also known as indexing operator.
+	2.DataFrame.loc[] --> This function is used for labels.
+	3.DataFrame.iloc[] --> This function is used for positions or integer based.
+	4.DataFrame.ix[] --> This function is used for both position and integer based.
+
+
+
+1. Indexing DataFrame using indexing Operator ( [] ) ::
+
+#Indexing operator is used to refer to the square brackets following an object. 
+# The .loc and .iloc indexers also use the indexing operator to make selections. 
+#In this indexing operator to refer to df[].
+
+
+import pandas as pd 
+df = pd.DataFrame({"A":["Phani", "Koti", "Lakshmi", "Satish", "Bullodu"], 
+				"B":["Test1", "test2", "test4", "test3", "test7"], 
+				"C":["Test4", "tetst", "dydyd", "ydydydy", "UUU"], 
+				"D":["RRR", "UUU", "TTT", "GGG", "ESESE"]}, 
+				index =["first", "second", "third", "fourth", "fifth"]) 
+
+print (df) 
+print ("\n")
+print (df["A"])
+
+Output ::
+
+              A      B        C      D
+first     Phani  Test1    Test4    RRR
+second     Koti  test2    tetst    UUU
+third   Lakshmi  test4    dydyd    TTT
+fourth   Satish  test3  ydydydy    GGG
+fifth   Bullodu  test7      UUU  ESESE
+
+
+first       Phani
+second       Koti
+third     Lakshmi
+fourth     Satish
+fifth     Bullodu
+Name: A, dtype: object
+
+
+# Indexing a DataFrame using .loc[ ] ::
+
+# This function selects data by the label of the rows and columns. 
+# The df.loc indexer selects data in a different way than just the indexing operator. 
+#It can select subsets of rows or columns. It can also simultaneously select subsets of rows and columns.
+
+Example 1 :: 
+
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print (df)
+print ("\n")
+print (df.loc[:,'A'])
+
+Output ::
+
+          A         B         C         D
+a -0.790352  0.684395  0.526069 -0.671556
+b -1.432522 -0.278261  1.510142  0.591007
+c  0.882542 -0.087116  1.204773 -1.524590
+d  1.660884  0.172653  0.225895  1.753453
+e -0.063885  1.274233 -2.054819 -0.727758
+f -0.954589  1.130836 -0.107380 -1.717824
+g -1.234876 -1.248813 -0.359006  1.314973
+h -0.498474 -2.501858  0.803535  0.768605
+
+
+a   -0.790352
+b   -1.432522
+c    0.882542
+d    1.660884
+e   -0.063885
+f   -0.954589
+g   -1.234876
+h   -0.498474
+Name: A, dtype: float64
+
+### Here in this case loc[:,'A'] --> ":" indicates the row information and second one indicates the column information.
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print (df)
+print ("\n")
+print (df.loc[:,['A','C']])
+
+Output ::
+
+          A         B         C         D
+a  0.951478 -0.915886  1.432415 -0.758321
+b  1.615949 -0.980678  1.356565 -0.541359
+c -0.311028 -0.447842 -1.740343  0.703060
+d  0.135869 -0.816548 -0.513637  1.306427
+e -0.578207  0.135096  2.190188  0.283655
+f  0.820166 -0.948524 -0.432687 -0.881690
+g  0.498740  0.124034 -2.267089 -0.725331
+h  0.449867 -0.982194 -0.745844  0.400872
+
+
+          A         C
+a  0.951478  1.432415
+b  1.615949  1.356565
+c -0.311028 -1.740343
+d  0.135869 -0.513637
+e -0.578207  2.190188
+f  0.820166 -0.432687
+g  0.498740 -2.267089
+h  0.449867 -0.745844
+
+#### 
+
+Example 3 ::
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print (df)
+print ("\n")
+print (df.loc[['a','f','g','h'],['A','C']])
+
+Output ::
+
+          A         B         C         D
+a -0.258849 -0.998388  1.116205 -2.022142
+b -2.099658 -0.556031 -0.267565 -1.373678
+c  0.264891 -1.038531  0.548532 -0.048879
+d -2.376173  1.384857  1.234105  0.253023
+e  1.721057 -2.023874  0.670351 -0.370443
+f -0.616579 -1.139380  1.368749  1.426167
+g  0.303979  0.039334 -1.318583 -1.065215
+h -1.376306  1.719569 -0.913777 -0.159416
+
+
+          A         C
+a -0.258849  1.116205
+f -0.616579  1.368749
+g  0.303979 -1.318583
+h -1.376306 -0.913777
+
+## Selecting range for rows from the selected DataFrame.
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print (df)
+print ("\n")
+print (df.loc['a':'d'])
+
+Output ::
+
+          A         B         C         D
+a -0.450976  0.508723 -1.359619  0.711683
+b  0.469015  0.582003 -0.911903  0.693856
+c -0.306924  0.719674  0.144859  1.492293
+d -0.751362  0.965463  0.088871  0.095883
+e -0.447537 -0.042936  0.205098 -1.365769
+f -0.282902 -0.075513 -1.899030 -0.298518
+g  0.451244  0.866442  1.713832  0.631096
+h -1.440046 -1.363512 -1.954322  1.109560
+
+
+          A         B         C         D
+a -0.450976  0.508723 -1.359619  0.711683
+b  0.469015  0.582003 -0.911903  0.693856
+c -0.306924  0.719674  0.144859  1.492293
+d -0.751362  0.965463  0.088871  0.095883
+
+## 
+
+#import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4),
+index = ['a','b','c','d','e','f','g','h'], columns = ['A', 'B', 'C', 'D'])
+
+#select all rows for a specific column
+print (df)
+print ("\n")
+print (df.loc['a']>0)
+
+Output ::
+
+
+          A         B         C         D
+a  0.475090  0.730547 -0.475885  1.851788
+b -0.398359  0.274200  0.593365  0.824919
+c -1.744483 -0.380263 -0.261851  0.184076
+d -0.968549 -1.247948 -0.108129  0.578227
+e -0.916075  0.260717  1.120245  0.269711
+f -0.557310 -0.293543 -1.185423  0.669686
+g -0.731222 -0.019455 -0.056282  1.191562
+h -0.895281  0.868710  1.696789  0.019914
+
+
+A     True
+B     True
+C    False
+D     True
+Name: a, dtype: bool
+
+### iloc () ________________________________________
+
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# select all rows for a specific column
+print (df)
+print (df.iloc[:4])
+
+Output ::
+
+          A         B         C         D
+0 -1.827420 -1.119333  1.171895 -1.660885
+1  0.923042 -1.045170 -0.532628  0.982795
+2  1.097614 -2.543550  0.090910 -1.962663
+3  1.743033 -0.779065  0.425808 -0.471714
+4  1.452862 -0.571640 -1.250423  0.179818
+5  1.424572 -1.173769  0.798127 -0.562365
+6  1.003500 -0.097650  1.481889 -1.895869
+7  0.465414  0.553342  1.067276  0.274646
+          A         B         C         D
+0 -1.827420 -1.119333  1.171895 -1.660885
+1  0.923042 -1.045170 -0.532628  0.982795
+2  1.097614 -2.543550  0.090910 -1.962663
+3  1.743033 -0.779065  0.425808 -0.471714
+
+### 
+
+# import the pandas library and aliasing as pd
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# select all rows for a specific column
+print (df)
+print (df.iloc[:4])
+print (df.iloc[1:5,2:4])
+
+Output ::
+
+          A         B         C         D
+0 -0.951182  0.088030 -0.541380 -0.865870
+1 -0.535132  0.254183 -0.528797 -1.749345
+2 -0.765334  0.837060 -1.149566  0.445688
+3  0.844848  1.199226  0.125856  1.032677
+4 -3.140655  0.204738  0.596584 -0.174396
+5 -0.533699 -0.948052  1.573958 -0.250380
+6 -0.241761  0.586065 -1.415877  0.573591
+7 -0.062213  0.291075  0.742943 -0.742640
+
+          A         B         C         D
+0 -0.951182  0.088030 -0.541380 -0.865870
+1 -0.535132  0.254183 -0.528797 -1.749345
+2 -0.765334  0.837060 -1.149566  0.445688
+3  0.844848  1.199226  0.125856  1.032677
+
+          C         D
+1 -0.528797 -1.749345
+2 -1.149566  0.445688
+3  0.125856  1.032677
+4  0.596584 -0.174396
+
+### 
+
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(8, 4), columns = ['A', 'B', 'C', 'D'])
+
+# Slicing through list of values
+print (df)
+print ("\n")
+print (df.iloc[[1, 3, 5], [1, 3]])
+print ("\n")
+print (df.iloc[1:3, :])
+print ("\n")
+print (df.iloc[:,1:3])
+
+
+Output ::
+
+          A         B         C         D
+0  2.259870  1.295280 -0.431076 -0.435142
+1 -0.098891  0.362460  1.864077 -0.183816
+2  0.836894 -0.270433  0.302851 -0.331037
+3  0.498667 -1.680844  0.851299 -0.315634
+4  0.185079 -0.193116  1.679545  0.433798
+5 -0.014394  0.335950  0.341974 -0.075302
+6 -1.240692 -0.206476 -0.729035 -0.405408
+7  1.783425 -0.799119  0.065795 -0.419782
+
+
+          B         D
+1  0.362460 -0.183816
+3 -1.680844 -0.315634
+5  0.335950 -0.075302
+
+
+          A         B         C         D
+1 -0.098891  0.362460  1.864077 -0.183816
+2  0.836894 -0.270433  0.302851 -0.331037
+
+
+          B         C
+0  1.295280 -0.431076
+1  0.362460  1.864077
+2 -0.270433  0.302851
+3 -1.680844  0.851299
+4 -0.193116  1.679545
+5  0.335950  0.341974
+6 -0.206476 -0.729035
+7 -0.799119  0.065795
+
+ 
+ 
+
+
+
+
+
+
 
 
 
