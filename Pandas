@@ -2231,13 +2231,492 @@ Output ::
 
 *********************************************** Python Pandas - Iteration ***************************************************
 
+# The behaviour of basic iteration over pandas depends on the type of the object. When iterating over series that iteraion is regarding as array-like.
+# Other data structures ( DataFrames and Panels ) follow the dict-like conversion.
+
+Series − values
+DataFrame − column labels
+Panel − item labels
+
+# Iterating a DataFrame  --> 
+
+Iterting over the DataFrame gives the Column Names.
+
+import pandas as pd
+import numpy as np
+
+N=20
+
+df = pd.DataFrame({
+   'A': pd.date_range(start='2016-01-01',periods=N,freq='D'),
+   'x': np.linspace(0,stop=N-1,num=N),
+   'y': np.random.rand(N),
+   'C': np.random.choice(['Low','Medium','High'],N).tolist(),
+   'D': np.random.normal(100, 10, size=(N)).tolist()
+})
+
+print (df)
+
+print ("\n")
+
+for col in df:
+    print (col)
 
 
+Output ::
+
+           A     x         y       C           D
+0  2016-01-01   0.0  0.618523     Low   99.507480
+1  2016-01-02   1.0  0.993785    High  106.069327
+2  2016-01-03   2.0  0.741357    High  102.913566
+3  2016-01-04   3.0  0.705589    High   89.571372
+4  2016-01-05   4.0  0.531667     Low   99.736598
+5  2016-01-06   5.0  0.620612  Medium   87.920708
+6  2016-01-07   6.0  0.972954     Low   84.041404
+7  2016-01-08   7.0  0.729570    High  106.681733
+8  2016-01-09   8.0  0.253523     Low  113.959025
+9  2016-01-10   9.0  0.589086     Low   95.040632
+10 2016-01-11  10.0  0.816404    High   92.707977
+11 2016-01-12  11.0  0.554189     Low  102.906402
+12 2016-01-13  12.0  0.799918  Medium   96.412354
+13 2016-01-14  13.0  0.808957     Low  107.554600
+14 2016-01-15  14.0  0.892274    High   87.575386
+15 2016-01-16  15.0  0.197154    High   92.118795
+16 2016-01-17  16.0  0.278214    High  104.091485
+17 2016-01-18  17.0  0.357989    High  113.382458
+18 2016-01-19  18.0  0.745789    High   88.828857
+19 2016-01-20  19.0  0.219304    High   95.818102
 
 
+A
+x
+y
+C
+D
+
+Example 2 ::  iteritems() ---> This will gives the items in an column. 
+
+import pandas as pd
+import numpy as np
+
+N=20
+
+df = pd.DataFrame({
+   'A': pd.date_range(start='2016-01-01',periods=N,freq='D'),
+   'x': np.linspace(0,stop=N-1,num=N),
+   'y': np.random.rand(N),
+   'C': np.random.choice(['Low','Medium','High'],N).tolist(),
+   'D': np.random.normal(100, 10, size=(N)).tolist()
+})
+
+print (df)
+
+print ("\n")
+
+for col in df.iteritems():
+    print (col)
+    
+    Output ::
+    
+    
+                A     x         y       C           D
+0  2016-01-01   0.0  0.105089  Medium  105.632043
+1  2016-01-02   1.0  0.750469  Medium  111.701101
+2  2016-01-03   2.0  0.666410     Low  100.866821
+3  2016-01-04   3.0  0.916931     Low   95.162321
+4  2016-01-05   4.0  0.651552    High   99.955787
+5  2016-01-06   5.0  0.657198     Low   78.355529
+6  2016-01-07   6.0  0.886481    High  102.649152
+7  2016-01-08   7.0  0.409136     Low   97.720261
+8  2016-01-09   8.0  0.163936     Low  108.810146
+9  2016-01-10   9.0  0.682366    High   86.162567
+10 2016-01-11  10.0  0.357235  Medium  108.030721
+11 2016-01-12  11.0  0.502311  Medium  103.048178
+12 2016-01-13  12.0  0.462420    High  111.395095
+13 2016-01-14  13.0  0.890377  Medium  111.028649
+14 2016-01-15  14.0  0.686601     Low  100.976099
+15 2016-01-16  15.0  0.222903  Medium   94.442004
+16 2016-01-17  16.0  0.342774     Low  119.171801
+17 2016-01-18  17.0  0.794009  Medium  114.468856
+18 2016-01-19  18.0  0.419887    High   98.844027
+19 2016-01-20  19.0  0.995562  Medium  114.550651
 
 
+('A', 0    2016-01-01
+1    2016-01-02
+2    2016-01-03
+3    2016-01-04
+4    2016-01-05
+5    2016-01-06
+6    2016-01-07
+7    2016-01-08
+8    2016-01-09
+9    2016-01-10
+10   2016-01-11
+11   2016-01-12
+12   2016-01-13
+13   2016-01-14
+14   2016-01-15
+15   2016-01-16
+16   2016-01-17
+17   2016-01-18
+18   2016-01-19
+19   2016-01-20
+Name: A, dtype: datetime64[ns])
+('x', 0      0.0
+1      1.0
+2      2.0
+3      3.0
+4      4.0
+5      5.0
+6      6.0
+7      7.0
+8      8.0
+9      9.0
+10    10.0
+11    11.0
+12    12.0
+13    13.0
+14    14.0
+15    15.0
+16    16.0
+17    17.0
+18    18.0
+19    19.0
+Name: x, dtype: float64)
+('y', 0     0.105089
+1     0.750469
+2     0.666410
+3     0.916931
+4     0.651552
+5     0.657198
+6     0.886481
+7     0.409136
+8     0.163936
+9     0.682366
+10    0.357235
+11    0.502311
+12    0.462420
+13    0.890377
+14    0.686601
+15    0.222903
+16    0.342774
+17    0.794009
+18    0.419887
+19    0.995562
+Name: y, dtype: float64)
+('C', 0     Medium
+1     Medium
+2        Low
+3        Low
+4       High
+5        Low
+6       High
+7        Low
+8        Low
+9       High
+10    Medium
+11    Medium
+12      High
+13    Medium
+14       Low
+15    Medium
+16       Low
+17    Medium
+18      High
+19    Medium
+Name: C, dtype: object)
+('D', 0     105.632043
+1     111.701101
+2     100.866821
+3      95.162321
+4      99.955787
+5      78.355529
+6     102.649152
+7      97.720261
+8     108.810146
+9      86.162567
+10    108.030721
+11    103.048178
+12    111.395095
+13    111.028649
+14    100.976099
+15     94.442004
+16    119.171801
+17    114.468856
+18     98.844027
+19    114.550651
+Name: D, dtype: float64)
 
 
+Example 3 :: iterrows () --> This will gives the rows in an given DataFrame.
+
+import pandas as pd
+import numpy as np
+
+N=20
+
+df = pd.DataFrame({
+   'A': pd.date_range(start='2016-01-01',periods=N,freq='D'),
+   'x': np.linspace(0,stop=N-1,num=N),
+   'y': np.random.rand(N),
+   'C': np.random.choice(['Low','Medium','High'],N).tolist(),
+   'D': np.random.normal(100, 10, size=(N)).tolist()
+})
+
+print (df)
+
+print ("\n")
+
+for row_index,row in df.iterrows():
+    print (row_index,row)
+    
+    Output ::
+    
+               A     x         y       C           D
+0  2016-01-01   0.0  0.574790  Medium  107.212318
+1  2016-01-02   1.0  0.705172     Low  104.479280
+2  2016-01-03   2.0  0.566538  Medium  103.788314
+3  2016-01-04   3.0  0.630676     Low   80.862912
+4  2016-01-05   4.0  0.567743    High  116.584441
+5  2016-01-06   5.0  0.873232  Medium   88.929182
+6  2016-01-07   6.0  0.053892    High   99.402300
+7  2016-01-08   7.0  0.667615  Medium   97.557842
+8  2016-01-09   8.0  0.088486  Medium   95.389174
+9  2016-01-10   9.0  0.654464     Low   98.995817
+10 2016-01-11  10.0  0.740045  Medium   95.512795
+11 2016-01-12  11.0  0.231309     Low  106.951054
+12 2016-01-13  12.0  0.281546  Medium   94.771135
+13 2016-01-14  13.0  0.072491    High  108.314966
+14 2016-01-15  14.0  0.698830     Low   82.075184
+15 2016-01-16  15.0  0.435107    High   81.260342
+16 2016-01-17  16.0  0.644410  Medium  101.990684
+17 2016-01-18  17.0  0.800502     Low  114.413712
+18 2016-01-19  18.0  0.661784     Low   99.183848
+19 2016-01-20  19.0  0.404483  Medium  101.260621
 
 
+0 A    2016-01-01 00:00:00
+x                      0
+y                0.57479
+C                 Medium
+D                107.212
+Name: 0, dtype: object
+1 A    2016-01-02 00:00:00
+x                      1
+y               0.705172
+C                    Low
+D                104.479
+Name: 1, dtype: object
+2 A    2016-01-03 00:00:00
+x                      2
+y               0.566538
+C                 Medium
+D                103.788
+Name: 2, dtype: object
+3 A    2016-01-04 00:00:00
+x                      3
+y               0.630676
+C                    Low
+D                80.8629
+Name: 3, dtype: object
+4 A    2016-01-05 00:00:00
+x                      4
+y               0.567743
+C                   High
+D                116.584
+Name: 4, dtype: object
+5 A    2016-01-06 00:00:00
+x                      5
+y               0.873232
+C                 Medium
+D                88.9292
+Name: 5, dtype: object
+6 A    2016-01-07 00:00:00
+x                      6
+y              0.0538915
+C                   High
+D                99.4023
+Name: 6, dtype: object
+7 A    2016-01-08 00:00:00
+x                      7
+y               0.667615
+C                 Medium
+D                97.5578
+Name: 7, dtype: object
+8 A    2016-01-09 00:00:00
+x                      8
+y               0.088486
+C                 Medium
+D                95.3892
+Name: 8, dtype: object
+9 A    2016-01-10 00:00:00
+x                      9
+y               0.654464
+C                    Low
+D                98.9958
+Name: 9, dtype: object
+10 A    2016-01-11 00:00:00
+x                     10
+y               0.740045
+C                 Medium
+D                95.5128
+Name: 10, dtype: object
+11 A    2016-01-12 00:00:00
+x                     11
+y               0.231309
+C                    Low
+D                106.951
+Name: 11, dtype: object
+12 A    2016-01-13 00:00:00
+x                     12
+y               0.281546
+C                 Medium
+D                94.7711
+Name: 12, dtype: object
+13 A    2016-01-14 00:00:00
+x                     13
+y              0.0724906
+C                   High
+D                108.315
+Name: 13, dtype: object
+14 A    2016-01-15 00:00:00
+x                     14
+y                0.69883
+C                    Low
+D                82.0752
+Name: 14, dtype: object
+15 A    2016-01-16 00:00:00
+x                     15
+y               0.435107
+C                   High
+D                81.2603
+Name: 15, dtype: object
+16 A    2016-01-17 00:00:00
+x                     16
+y                0.64441
+C                 Medium
+D                101.991
+Name: 16, dtype: object
+17 A    2016-01-18 00:00:00
+x                     17
+y               0.800502
+C                    Low
+D                114.414
+Name: 17, dtype: object
+18 A    2016-01-19 00:00:00
+x                     18
+y               0.661784
+C                    Low
+D                99.1838
+Name: 18, dtype: object
+19 A    2016-01-20 00:00:00
+x                     19
+y               0.404483
+C                 Medium
+D                101.261
+Name: 19, dtype: object
+
+
+## itertuples() method will return an iterator yielding a named tuple for each row in the DataFrame.
+# The first element of the tuple will be the row’s corresponding index value, while the remaining values are the row values.
+
+
+import pandas as pd
+import numpy as np
+
+N=20
+
+df = pd.DataFrame({
+   'A': pd.date_range(start='2016-01-01',periods=N,freq='D'),
+   'x': np.linspace(0,stop=N-1,num=N),
+   'y': np.random.rand(N),
+   'C': np.random.choice(['Low','Medium','High'],N).tolist(),
+   'D': np.random.normal(100, 10, size=(N)).tolist()
+})
+
+print (df)
+
+print ("\n")
+
+for row in df.itertuples():
+    print (row)
+    
+Output ::
+
+            A     x         y       C           D
+0  2016-01-01   0.0  0.103438  Medium   95.542205
+1  2016-01-02   1.0  0.817581     Low  118.047763
+2  2016-01-03   2.0  0.742113    High  101.079013
+3  2016-01-04   3.0  0.226935    High   98.900335
+4  2016-01-05   4.0  0.548871  Medium  104.233193
+5  2016-01-06   5.0  0.866958     Low   93.609812
+6  2016-01-07   6.0  0.143501  Medium  108.598935
+7  2016-01-08   7.0  0.749316  Medium   89.225708
+8  2016-01-09   8.0  0.675292  Medium  109.523137
+9  2016-01-10   9.0  0.525326  Medium   92.322679
+10 2016-01-11  10.0  0.199194    High   99.309053
+11 2016-01-12  11.0  0.159795    High   99.120565
+12 2016-01-13  12.0  0.885304     Low   85.852910
+13 2016-01-14  13.0  0.769164     Low  104.028182
+14 2016-01-15  14.0  0.192276    High  108.089062
+15 2016-01-16  15.0  0.684636    High   88.241101
+16 2016-01-17  16.0  0.019729  Medium  106.589275
+17 2016-01-18  17.0  0.224495  Medium  124.637271
+18 2016-01-19  18.0  0.708011  Medium  100.690313
+19 2016-01-20  19.0  0.519578     Low  116.775809
+
+
+Pandas(Index=0, A=Timestamp('2016-01-01 00:00:00'), x=0.0, y=0.10343824638803101, C='Medium', D=95.54220491944581)
+Pandas(Index=1, A=Timestamp('2016-01-02 00:00:00'), x=1.0, y=0.8175807040999392, C='Low', D=118.04776262608297)
+Pandas(Index=2, A=Timestamp('2016-01-03 00:00:00'), x=2.0, y=0.7421127760817756, C='High', D=101.07901271401921)
+Pandas(Index=3, A=Timestamp('2016-01-04 00:00:00'), x=3.0, y=0.22693525630802525, C='High', D=98.90033460156467)
+Pandas(Index=4, A=Timestamp('2016-01-05 00:00:00'), x=4.0, y=0.5488711455184809, C='Medium', D=104.23319292346132)
+Pandas(Index=5, A=Timestamp('2016-01-06 00:00:00'), x=5.0, y=0.866957840586524, C='Low', D=93.60981190890016)
+Pandas(Index=6, A=Timestamp('2016-01-07 00:00:00'), x=6.0, y=0.14350111981700153, C='Medium', D=108.5989353763506)
+Pandas(Index=7, A=Timestamp('2016-01-08 00:00:00'), x=7.0, y=0.74931606067644, C='Medium', D=89.22570840580698)
+Pandas(Index=8, A=Timestamp('2016-01-09 00:00:00'), x=8.0, y=0.6752917337771005, C='Medium', D=109.52313738931412)
+Pandas(Index=9, A=Timestamp('2016-01-10 00:00:00'), x=9.0, y=0.5253259928912187, C='Medium', D=92.3226786030186)
+Pandas(Index=10, A=Timestamp('2016-01-11 00:00:00'), x=10.0, y=0.1991942553866748, C='High', D=99.30905251960695)
+Pandas(Index=11, A=Timestamp('2016-01-12 00:00:00'), x=11.0, y=0.15979517007580601, C='High', D=99.12056480991598)
+Pandas(Index=12, A=Timestamp('2016-01-13 00:00:00'), x=12.0, y=0.8853037958474059, C='Low', D=85.85291012913115)
+Pandas(Index=13, A=Timestamp('2016-01-14 00:00:00'), x=13.0, y=0.7691643824675447, C='Low', D=104.0281817233052)
+Pandas(Index=14, A=Timestamp('2016-01-15 00:00:00'), x=14.0, y=0.19227605959870797, C='High', D=108.08906233986986)
+Pandas(Index=15, A=Timestamp('2016-01-16 00:00:00'), x=15.0, y=0.6846364509287839, C='High', D=88.2411006745066)
+Pandas(Index=16, A=Timestamp('2016-01-17 00:00:00'), x=16.0, y=0.019728594963986712, C='Medium', D=106.5892749579518)
+Pandas(Index=17, A=Timestamp('2016-01-18 00:00:00'), x=17.0, y=0.2244945146976426, C='Medium', D=124.63727105993968)
+Pandas(Index=18, A=Timestamp('2016-01-19 00:00:00'), x=18.0, y=0.7080114670976707, C='Medium', D=100.69031313700785)
+Pandas(Index=19, A=Timestamp('2016-01-20 00:00:00'), x=19.0, y=0.51957820206402, C='Low', D=116.77580949130217)
+
+## At iteration time, don't change the object. Just it will show what is in a list.
+
+### 
+Example 1 ::
+
+
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame(np.random.randn(4,3),columns = ['col1','col2','col3'])
+
+print (df)
+
+for index, row in df.iterrows():
+   row['a'] = 10
+print (df)
+
+Output ::
+
+       col1      col2      col3
+0  2.916651 -0.447630 -0.474349
+1 -0.169122  0.290638  1.388675
+2 -0.628828 -0.680608 -0.391641
+3  0.794641 -0.507418  0.152516
+
+       col1      col2      col3
+0  2.916651 -0.447630 -0.474349
+1 -0.169122  0.290638  1.388675
+2 -0.628828 -0.680608 -0.391641
+3  0.794641 -0.507418  0.152516
+
+********************************** 
