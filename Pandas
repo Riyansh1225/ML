@@ -1670,6 +1670,14 @@ dtype: float64
 
 # Row or Column Wise Function Operations: apply() ::
 
+# We can apply Arbitrary function to the axes of DataFrame or Panel ny using the apply () function.
+# Arbitrary function is a function , that is free to define any where any way you want on DataFrame. 
+# This function can be applied on the Series as well. This function will takes Optional axis input. By default this will take axis= 1 ( Column )
+as Optional input.
+# This will take every column as array.It enables the users to pass a function and then apply it to all the values of the DataFrame or Series.
+# It is very big improvement to the lib to allow the segregation of the data according to the given conditions,make it effectively usable in ML.
+
+
 
 
 
