@@ -1793,6 +1793,446 @@ Output ::
 4     63.876330
 Name: col1, dtype: float64
 
+***************************************** Python Pandas - Reindexing *******************************************
+
+# Reindexing changes the row lables and column lables of DataFrame. 
+# To reindex means to conform the data to match a given set of labels along a particular axis.
+
+Example 1 :: 
+
+import pandas as pd
+import numpy as np
+
+N=20
+
+df = pd.DataFrame({
+   'A': pd.date_range(start='2016-01-01',periods=N,freq='D'),
+   'x': np.linspace(0,stop=N-1,num=N),
+   'y': np.random.rand(N),
+   'C': np.random.choice(['Low','Medium','High'],N).tolist(),
+   'D': np.random.normal(100, 10, size=(N)).tolist()
+})
+
+#reindex the DataFrame
+print (df)
+df_reindexed = df.reindex(index=[0,2,5]) # columns=['A', 'x', 'y' , 'C' ,'D'])
+
+print (df_reindexed)
+
+Output ::
+
+            A     x         y       C           D
+0  2016-01-01   0.0  0.930474     Low   86.709108
+1  2016-01-02   1.0  0.652578    High   82.368133
+2  2016-01-03   2.0  0.117575     Low  102.339890
+3  2016-01-04   3.0  0.893821  Medium  108.474794
+4  2016-01-05   4.0  0.638027    High   91.364041
+5  2016-01-06   5.0  0.723108  Medium  115.428175
+6  2016-01-07   6.0  0.024014     Low  108.284102
+7  2016-01-08   7.0  0.047524     Low  101.338076
+8  2016-01-09   8.0  0.191801  Medium   81.445855
+9  2016-01-10   9.0  0.618792     Low   91.884926
+10 2016-01-11  10.0  0.116355  Medium   92.213333
+11 2016-01-12  11.0  0.832525     Low   94.807764
+12 2016-01-13  12.0  0.420264  Medium   98.176485
+13 2016-01-14  13.0  0.572425     Low   95.188442
+14 2016-01-15  14.0  0.942873    High   94.926471
+15 2016-01-16  15.0  0.426761    High  101.018565
+16 2016-01-17  16.0  0.821353    High   94.880773
+17 2016-01-18  17.0  0.472166  Medium  108.718900
+18 2016-01-19  18.0  0.585152    High   89.934585
+19 2016-01-20  19.0  0.798420     Low  100.562818
+           A    x         y       C           D
+0 2016-01-01  0.0  0.930474     Low   86.709108
+2 2016-01-03  2.0  0.117575     Low  102.339890
+5 2016-01-06  5.0  0.723108  Medium  115.428175
+
+## Reindex to Align with Other Objects :::    reindex_like   () --> function 
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame(np.random.rand(10,3),columns=['col1','col2','col3'])
+b=pd.DataFrame(np.random.rand(7,3),columns=['col1','col2','col3'])
+print (a)
+print (b)
+
+c=a.reindex_like(b)
+print ('\n')
+print (c)
+
+Output ::
+
+       col1      col2      col3
+0  0.177633  0.419034  0.548163
+1  0.518217  0.980827  0.029412
+2  0.134085  0.107823  0.367347
+3  0.319872  0.130905  0.231669
+4  0.784012  0.839798  0.389804
+5  0.073118  0.678799  0.237640
+6  0.313791  0.247063  0.122447
+7  0.469874  0.689997  0.634341
+8  0.514090  0.687038  0.331568
+9  0.452872  0.717126  0.385082
+       col1      col2      col3
+0  0.188407  0.601431  0.037840
+1  0.799856  0.003558  0.950978
+2  0.210717  0.262131  0.229856
+3  0.284010  0.425418  0.054504
+4  0.147855  0.542536  0.124946
+5  0.915406  0.186978  0.236072
+6  0.376898  0.931882  0.137277
+
+
+       col1      col2      col3
+0  0.177633  0.419034  0.548163
+1  0.518217  0.980827  0.029412
+2  0.134085  0.107823  0.367347
+3  0.319872  0.130905  0.231669
+4  0.784012  0.839798  0.389804
+5  0.073118  0.678799  0.237640
+6  0.313791  0.247063  0.122447
+
+Example 2 ::
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame(np.random.rand(10,3),columns=['col1','col2','col3'])
+b=pd.DataFrame(np.random.rand(7,3),columns=['col1','col2','col3'])
+print (a)
+print (b)
+
+c=b.reindex_like(a)
+print ('\n')
+print (c)
+
+Output ::
+
+       col1      col2      col3
+0  0.101595  0.855478  0.506382
+1  0.396819  0.130382  0.017159
+2  0.429026  0.178253  0.523626
+3  0.089394  0.320198  0.062835
+4  0.974549  0.336347  0.439141
+5  0.592526  0.561306  0.179924
+6  0.028030  0.770696  0.573880
+7  0.048704  0.119552  0.055870
+8  0.636060  0.914610  0.837462
+9  0.401072  0.050083  0.480669
+       col1      col2      col3
+0  0.715565  0.288487  0.732263
+1  0.546339  0.943235  0.510783
+2  0.901843  0.651103  0.495666
+3  0.285398  0.919742  0.657169
+4  0.936017  0.806290  0.854218
+5  0.698326  0.013808  0.697354
+6  0.966692  0.346096  0.447427
+
+
+       col1      col2      col3
+0  0.715565  0.288487  0.732263
+1  0.546339  0.943235  0.510783
+2  0.901843  0.651103  0.495666
+3  0.285398  0.919742  0.657169
+4  0.936017  0.806290  0.854218
+5  0.698326  0.013808  0.697354
+6  0.966692  0.346096  0.447427
+7       NaN       NaN       NaN
+8       NaN       NaN       NaN
+9       NaN       NaN       NaN
+
+
+
+
+# Filling while ReIndexing  --> reindex() takes optional parameter method which is filling method with values as follows 
+
+   1. pad/ffill --> Fill values Forward
+   2. bfill/backfill --> Fill values backward
+   3. nearest ---> Fill from the nearest index values
+ 
+ Example 1 :: 
+ 
+import numpy as np
+import pandas as pd
+a=pd.DataFrame(np.random.rand(10,3),columns=['col1','col2','col3'])
+b=pd.DataFrame(np.random.rand(7,3),columns=['col1','col2','col3'])
+print (a)
+print ('\n')
+print (b)
+
+c=b.reindex_like(a)
+print ('\n')
+print (c)
+print ('\n')
+c=b.reindex_like(a,method='ffill')
+print (c)
+
+
+Output ::
+
+
+       col1      col2      col3
+0  0.116696  0.756403  0.413988
+1  0.227921  0.687779  0.391765
+2  0.091548  0.193290  0.726616
+3  0.629319  0.460372  0.068909
+4  0.290821  0.141670  0.416574
+5  0.791925  0.467223  0.860759
+6  0.527840  0.909873  0.710355
+7  0.746187  0.063053  0.408631
+8  0.570513  0.321079  0.032489
+9  0.667833  0.219297  0.582545
+
+
+       col1      col2      col3
+0  0.605287  0.881865  0.313938
+1  0.889352  0.224327  0.011772
+2  0.260559  0.576165  0.736079
+3  0.862885  0.128363  0.697569
+4  0.588545  0.496493  0.131404
+5  0.678509  0.890839  0.374944
+6  0.514997  0.655439  0.913252
+
+
+       col1      col2      col3
+0  0.605287  0.881865  0.313938
+1  0.889352  0.224327  0.011772
+2  0.260559  0.576165  0.736079
+3  0.862885  0.128363  0.697569
+4  0.588545  0.496493  0.131404
+5  0.678509  0.890839  0.374944
+6  0.514997  0.655439  0.913252
+7       NaN       NaN       NaN
+8       NaN       NaN       NaN
+9       NaN       NaN       NaN
+
+
+       col1      col2      col3
+0  0.605287  0.881865  0.313938
+1  0.889352  0.224327  0.011772
+2  0.260559  0.576165  0.736079
+3  0.862885  0.128363  0.697569
+4  0.588545  0.496493  0.131404
+5  0.678509  0.890839  0.374944
+6  0.514997  0.655439  0.913252
+7  0.514997  0.655439  0.913252
+8  0.514997  0.655439  0.913252
+9  0.514997  0.655439  0.913252
+
+
+Example 2 :: Back filling with values ::
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame(np.random.rand(10,3),columns=['col1','col2','col3'])
+b=pd.DataFrame(np.random.rand(7,3),columns=['col1','col2','col3'])
+print (a)
+print ('\n')
+print (b)
+
+c=b.reindex_like(a)
+print ('\n')
+print (c)
+print ('\n')
+c=b.reindex_like(a,method='ffill',limit=2)
+print (c)
+
+Output ::
+
+       col1      col2      col3
+0  0.337238  0.248148  0.527802
+1  0.722307  0.213012  0.311521
+2  0.732668  0.422132  0.784905
+3  0.437924  0.928091  0.639914
+4  0.277498  0.724038  0.248493
+5  0.463614  0.150393  0.964468
+6  0.751781  0.063179  0.912541
+7  0.144895  0.281223  0.891258
+8  0.279375  0.504322  0.817990
+9  0.497945  0.082595  0.367988
+
+
+       col1      col2      col3
+0  0.918435  0.136101  0.444350
+1  0.225114  0.197839  0.519446
+2  0.988533  0.820658  0.477287
+3  0.656564  0.728932  0.902900
+4  0.636591  0.749248  0.179473
+5  0.796720  0.214320  0.624624
+6  0.513198  0.867254  0.074450
+
+
+       col1      col2      col3
+0  0.918435  0.136101  0.444350
+1  0.225114  0.197839  0.519446
+2  0.988533  0.820658  0.477287
+3  0.656564  0.728932  0.902900
+4  0.636591  0.749248  0.179473
+5  0.796720  0.214320  0.624624
+6  0.513198  0.867254  0.074450
+7       NaN       NaN       NaN
+8       NaN       NaN       NaN
+9       NaN       NaN       NaN
+
+
+       col1      col2      col3
+0  0.918435  0.136101  0.444350
+1  0.225114  0.197839  0.519446
+2  0.988533  0.820658  0.477287
+3  0.656564  0.728932  0.902900
+4  0.636591  0.749248  0.179473
+5  0.796720  0.214320  0.624624
+6  0.513198  0.867254  0.074450
+7  0.513198  0.867254  0.074450
+8  0.513198  0.867254  0.074450
+9       NaN       NaN       NaN
+
+# Renaming () --> The Renaming function is used to rename the columns and Index of the givn DataFrame.
+
+import pandas as pd
+import numpy as np
+
+df1 = pd.DataFrame(np.random.randn(6,3),columns=['col1','col2','col3'])
+print (df1)
+
+print ("After renaming the rows and columns:")
+print (df1.rename(columns={'col1' : 'c1', 'col2' : 'c2'},
+index = {0 : 'apple', 1 : 'banana', 2 : 'durian'}))
+
+
+Output ::
+
+       col1      col2      col3
+0  1.103078 -1.705854 -1.040489
+1  0.005387 -0.153604 -0.771053
+2 -0.843738  0.439199 -0.505656
+3 -0.237547  0.659232 -0.110062
+4  1.248890 -0.321268  2.560658
+5  0.913191  0.645879  1.542438
+After renaming the rows and columns:
+              c1        c2      col3
+apple   1.103078 -1.705854 -1.040489
+banana  0.005387 -0.153604 -0.771053
+durian -0.843738  0.439199 -0.505656
+3      -0.237547  0.659232 -0.110062
+4       1.248890 -0.321268  2.560658
+5       0.913191  0.645879  1.542438
+
+# fill_value () --> This method will fill the NaN value with the given value.
+
+# importing pandas as pd 
+import pandas as pd 
+
+# Creating the dataframe 
+df = pd.DataFrame({"A":[1, 5, 3, 4, 2], 
+				"B":[3, 2, 4, 3, 4], 
+				"C":[2, 2, 7, 3, 4], 
+				"D":[4, 3, 6, 12, 7]}, 
+				index =["first", "second", "third", "fourth", "fifth"]) 
+
+# Print the dataframe 
+print (df) 
+
+print (df.reindex(["first","Phani","YYYY","second"],fill_value=100))
+
+Output ::
+
+       A  B  C   D
+first   1  3  2   4
+second  5  2  2   3
+third   3  4  7   6
+fourth  4  3  3  12
+fifth   2  4  4   7
+
+          A    B    C    D
+first     1    3    2    4
+Phani   100  100  100  100
+YYYY    100  100  100  100
+second    5    2    2    3
+
+
+# Pandas dataframe.bfill()  --> 
+
+#When axis='rows', then value in current na cells are filled from the corresponding value in the next row. 
+# If the next row is also na value then it won’t be populated.
+
+Eample 1 ::
+
+# importing pandas as pd 
+import pandas as pd 
+
+# Creating a dataframe with "na" values. 
+
+df = pd.DataFrame({"A":[None, 1, 2, 3, None, None], 
+				"B":[11, 5, None, None, None, 8], 
+				"C":[None, 5, 10, 11, None, 8]}) 
+
+# Printing the dataframe 
+print (df)
+print ("\n")
+print (df.bfill(axis='rows'))
+
+Output ::
+
+     A     B     C
+0  NaN  11.0   NaN
+1  1.0   5.0   5.0
+2  2.0   NaN  10.0
+3  3.0   NaN  11.0
+4  NaN   NaN   NaN
+5  NaN   8.0   8.0
+
+
+     A     B     C
+0  1.0  11.0   5.0
+1  1.0   5.0   5.0
+2  2.0   8.0  10.0
+3  3.0   8.0  11.0
+4  NaN   8.0   8.0
+5  NaN   8.0   8.0
+
+# Example 2 :: 
+
+# When axis='columns', then the current na cells will be filled from the value present in the next column in the same row. 
+# If the next column is also na cell then it won’t be filled.
+
+# importing pandas as pd 
+import pandas as pd 
+
+# Creating a dataframe with "na" values. 
+
+df = pd.DataFrame({"A":[None, 1, 2, 3, None, None], 
+				"B":[11, 5, None, None, None, 8], 
+				"C":[None, 5, 10, 11, None, 8]}) 
+
+# Printing the dataframe 
+print (df)
+print ("\n")
+print (df.bfill(axis='columns'))
+
+
+Output ::
+
+     A     B     C
+0  NaN  11.0   NaN
+1  1.0   5.0   5.0
+2  2.0   NaN  10.0
+3  3.0   NaN  11.0
+4  NaN   NaN   NaN
+5  NaN   8.0   8.0
+
+
+      A     B     C
+0  11.0  11.0   NaN
+1   1.0   5.0   5.0
+2   2.0  10.0  10.0
+3   3.0  11.0  11.0
+4   NaN   NaN   NaN
+5   8.0   8.0   8.0
+
+*********************************************** Python Pandas - Iteration ***************************************************
+
+
+
 
 
 
