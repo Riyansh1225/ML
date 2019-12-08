@@ -2719,4 +2719,12 @@ Output ::
 2 -0.628828 -0.680608 -0.391641
 3  0.794641 -0.507418  0.152516
 
-********************************** 
+********************************** Python Pandas - Sorting *******************************************************************8
+
+# Sorting in Pandas. Below are two types of sorting in Pandas.
+
+  1.By label
+  2.By Actual Value
+
+
+1. By Label ::: Sort by Labels
