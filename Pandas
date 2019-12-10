@@ -3876,19 +3876,169 @@ dtype: float64
 
 ## By default, the pct_change() will operate on the column. If we want to change, we need to use axis=1 for row wise.
 
-### Covariance () --> 
+### Covariance () --> In statistics,covariance is a measure of the relationship between two random variables.
+
+# Covariance indicates how two variables are related.
+# A positive covariance means the variables are positively related, while a negative covariance means the variables are inversely related.
 
 The Covariance is applied on the series data. The series object has a method cov to compute covariance between series.
 
+The formula for Covariance is as below ::
 
+Cov(x,y) = E ( i= 1 to n )  ( x-mean(x)) ( y-mean(y)) / n-1 
+
+Example 1 ::
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame([[10,20,30,40,50],[100,200,300,400,500],[50,40,30,20,10]],
+               columns=['Col1','Col2','Col3','Col4','Col5'], 
+               index=['Test1','Test2','Test3'])
+print (a)
+print ("\n")
+b=a['Col3'].cov(a['Col5'])
+print ("\n")
+print (b)
+
+Output ::
+
+      Col1  Col2  Col3  Col4  Col5
+Test1    10    20    30    40    50
+Test2   100   200   300   400   500
+Test3    50    40    30    20    10
+
+
+Example 2 :: In this example we need to calculate Covariance for all the columns.
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame([[10,20,30,40,50],[100,200,300,400,500],[50,40,30,20,10]],
+               columns=['Col1','Col2','Col3','Col4','Col5'], 
+               index=['Test1','Test2','Test3'])
+print (a)
+print ("\n")
+b=a['Col3'].cov(a['Col5'])
+print ("\n")
+print (b)
+print ("\n")
+print (a.cov())
+
+Output ::
+
+       Col1  Col2  Col3  Col4  Col5
+Test1    10    20    30    40    50
+Test2   100   200   300   400   500
+Test3    50    40    30    20    10
+
+
+
+
+42300.0
+
+
+              Col1          Col2     Col3          Col4          Col5
+Col1   2033.333333   4166.666667   6300.0   8433.333333  10566.666667
+Col2   4166.666667   9733.333333  15300.0  20866.666667  26433.333333
+Col3   6300.000000  15300.000000  24300.0  33300.000000  42300.000000
+Col4   8433.333333  20866.666667  33300.0  45733.333333  58166.666667
+Col5  10566.666667  26433.333333  42300.0  58166.666667  74033.333333
+
+## In this example, First system will take Col1 and Col1 as input and calculate covariance as 2033.333333.
+                                           Col1 and Col2 as input and calculate covariance as 4166.666667  ..etc 
  
 
 
+##### Correlation  ::
+
+# Correlation is another way to determine how two variables are related.
+# In addition to telling you whether variables are positively or inversely related, correlation also tells you the degree to which the variables tend to move together.
+
+# As stated above, covariance measures variables that have different units of measurement. 
+# Using covariance, you could determine whether units were increasing or decreasing, but it was impossible to measure the degree to which the variables moved together because covariance does not use one standard unit of measurement.
+# To measure the degree to which variables move together, you must use correlation.
+
+# Correlation standardizes the measure of interdependence between two variables and, consequently, tells you how closely the two variables move. 
+# The correlation measurement, called a correlation coefficient, will always take on a value between 1 and – 1:
+
+r(x,y) = Cov(x,y)/sxsy
+
+r(x,y) = correlation of the variables x and y
+COV(x, y) = covariance of the variables x and y
+sx = sample standard deviation of the random variable x
+sy = sample standard deviation of the random variable y
+
+
+Example 1 ::
+
+
+import numpy as np
+import pandas as pd
+a=pd.DataFrame([[10,20,30,40,50],[100,200,300,400,500],[50,40,30,20,10]],
+               columns=['Col1','Col2','Col3','Col4','Col5'], 
+               index=['Test1','Test2','Test3'])
+print (a)
+print ("\n")
+b=a['Col3'].corr(a['Col5'])
+print ("\n")
+print (b)
+print ("\n")
+print (a.corr())
+
+
+Output ::
+
+       Col1  Col2  Col3  Col4  Col5
+Test1    10    20    30    40    50
+Test2   100   200   300   400   500
+Test3    50    40    30    20    10
 
 
 
 
+0.9972948552788191
 
+
+          Col1      Col2      Col3      Col4      Col5
+Col1  1.000000  0.936599  0.896258  0.874538  0.861232
+Col2  0.936599  1.000000  0.994850  0.989022  0.984708
+Col3  0.896258  0.994850  1.000000  0.998906  0.997295
+Col4  0.874538  0.989022  0.998906  1.000000  0.999641
+Col5  0.861232  0.984708  0.997295  0.999641  1.000000
+
+#### Data Ranking ################
+
+# Data Ranking produces ranking for each element in the array of elements. In case of ties, assigns the mean rank.
+
+
+import pandas as pd
+import numpy as np
+
+s = pd.Series(np.random.np.random.randn(5), index=list('abcde'))
+print (s)
+s['d'] = s['b'] # so there's a tie
+print (s)
+print (s.rank())
+
+Output ::
+
+a   -0.643577
+b   -0.242615
+c   -0.306131
+d    0.393819
+e    0.611944
+dtype: float64
+a   -0.643577
+b   -0.242615
+c   -0.306131
+d   -0.242615
+e    0.611944
+dtype: float64
+a    1.0
+b    3.5
+c    2.0
+d    3.5
+e    5.0
+dtype: float64
 
 
 
