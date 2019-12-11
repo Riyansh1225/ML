@@ -4068,6 +4068,47 @@ Test3   2.0   2.0   1.5   1.0   1.0
 
 # In this case, rank is happening on basis of the Column. If we don't specify the input, system automatically take it as column.
 
+Example 3 ::
 
+# importing pandas as pd 
+import pandas as pd 
+
+# Creating the Series 
+sr = pd.Series([10, 25, 3, 11, 24, 6]) 
+
+# Create the Index 
+index_ = ['Coca Cola', 'Sprite', 'Coke', 'Fanta', 'Dew', 'ThumbsUp'] 
+
+# set the index 
+sr.index = index_ 
+
+# Print the series 
+print(sr) 
+print ("\n")
+print (sr.rank())
+
+Output ::
+
+Coca Cola    10
+Sprite       25
+Coke          3
+Fanta        11
+Dew          24
+ThumbsUp      6
+dtype: int64
+
+
+Coca Cola    3.0
+Sprite       6.0
+Coke         1.0
+Fanta        4.0
+Dew          5.0
+ThumbsUp     2.0
+dtype: float64
+
+**********************************Python Pandas - Window Functions**************************************************
+
+# The Pandas Windows function provides the features of rolling window calculation. 
+# The calculation of rolling window calculation is most primarly used in the signal processing and time series data.
 
 
