@@ -4041,7 +4041,32 @@ e    5.0
 dtype: float64
 
 
+Example 2 ::
 
+import numpy as np
+import pandas as pd
+a=pd.DataFrame([[10,20,30,40,50],[100,200,300,400,500],[50,40,30,20,10]],
+               columns=['Col1','Col2','Col3','Col4','Col5'], 
+               index=['Test1','Test2','Test3'])
+print (a)
+print ("\n")
+print (a.rank())
+
+
+Output ::
+
+       Col1  Col2  Col3  Col4  Col5
+Test1    10    20    30    40    50
+Test2   100   200   300   400   500
+Test3    50    40    30    20    10
+
+
+       Col1  Col2  Col3  Col4  Col5
+Test1   1.0   1.0   1.5   2.0   2.0
+Test2   3.0   3.0   3.0   3.0   3.0
+Test3   2.0   2.0   1.5   1.0   1.0
+
+# In this case, rank is happening on basis of the Column. If we don't specify the input, system automatically take it as column.
 
 
 
